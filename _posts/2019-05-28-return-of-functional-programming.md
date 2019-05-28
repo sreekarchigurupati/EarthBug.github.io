@@ -2,103 +2,119 @@
 layout: post
 title: "The return of functional programming"
 author: "Sreekar Chigurupati"
-tags: programming 
+categories: programming
+tags: functional-programming moore's-law concurrency parallelism
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit.
+But first ...
+## What is functional programming ?
+![](/assets/return-of-functional-programming/lambda.svg){: width="100px" }
 
-## Some great heading (h2)
+Functional programming is a programming paradigm in which most computation is treated as evaluation of functions. It emphasizes on expression evaluation instead of command execution. -- [Wikipedia](https://en.wikipedia.org/wiki/Functional_programming){:target="_blank"}
 
-Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et, molestie et arcu.
+### When did it all start ?
 
-Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
+In the 90's, there was a war between declarative programming and imperative programming. Declarative programming then represented by logic programming languages like Prolog and early functional languages like Erlang. And imperative languages were represented by procedural languages like C and object-oriented languages like Perl. These used abstract data types and procedures (sequence of commands) to compute.
 
-## Another great heading (h2)
+You can infer, no doubt that declarative languages won, given the present state of computer languages. One big reason for this is that the process of writing code in an imperative fashion closely mimics the way programs are executed inside the computer. The theoretical basis of the modern computer being the von Neumann computer.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit.
+![](/assets/return-of-functional-programming/von-neumann.svg)  
 
-### Some great subheading (h3)
+Image by <a href="//commons.wikimedia.org/w/index.php?title=User:Kapooht&amp;action=edit&amp;redlink=1" class="new" title="User:Kapooht (page does not exist)">Kapooht</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=25789639">Link</a>
 
-Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum. In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum.
+As you can see, the von Neumann model is closely mimicked by the execution flow in imperative languages. There is a strong correspondence between mutable variables and memory cells, variable dereferences and load instructions, variable assignments and store instructions, control structures and jumps. This sort of intuition helped programmers adopt them faster.
 
-Phasellus et hendrerit mauris. Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc.
+## What changed?
 
-### Some great subheading (h3)
+![](/assets/return-of-functional-programming/rewind-time.jpg)  
 
-Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
+It's time to remember a legend. [Gordon Moore](https://en.wikipedia.org/wiki/Gordon_Moore). He observed that the number of components on a dense integrated circuit doubles every year. [Moore's Law](https://en.wikipedia.org/wiki/Moore%27s_law)
 
-> This quote will change your life. It will reveal the secrets of the universe, and all the wonders of humanity. Don't misuse it.
+![](/assets/return-of-functional-programming/moores-law.svg){: width="400px" }  
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt.
+Image by <a href="//commons.wikimedia.org/wiki/User:Wgsimon" title="User:Wgsimon">Wgsimon</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=15193542">Link</a>
 
-### Some great subheading (h3)
-
-Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin convallis mi ac felis pharetra aliquam. Curabitur dignissim accumsan rutrum.
-
-```html
-<html>
-  <head>
-  </head>
-  <body>
-    <p>Hello, World!</p>
-  </body>
-</html>
-```
+Over the past few years, the trend has subsided as controlling the control flow in the thin channel is becoming more difficult. We cannot make chips smaller anymore, unless there are revolutionary advancements in technology. To keep with the growing demand for computer power, we'll have to add more cores on a chip or use more chips. Huge volume workloads that require horizontal scaling are becoming more common. So we'll have to write software that better gels with the hardware we have.
 
 
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
+There are two facets to this problem
+ - Parallel programming
+ - Concurrent programming
 
-#### You might want a sub-subheading (h4)
+Parallel programming means using multiple units of hardware to compute something and speed up the process. But the program itself doesn't require this, it can still be solved on a single unit of hardware without any loss of functionality apart from speed.
 
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
+Concurrent programming refers to programs that are inherently concurrent, that need to process large number of requests. Eg. Twitter. This has to be done in real-time and cannot be done in a sequential way.
 
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
+While using conventional / imperative programming to implement either of these, we face some fundamental problems.
+## The root of the problem
+let's look at some pseudocode now
 
-#### But it's probably overkill (h4)
+{% highlight scala %}
+var x = 0
+async { x = x + 1 }
+async { x = x * 2 }  
 
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
+// can give 0, 1, 2
+{% endhighlight %}
 
-### Oh hai, an unordered list!!
+The above program has two asynchronous operations running. We can see that the output is non-deterministic. This non-determinism is caused by concurrent threads accessing shared mutable state.
 
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
+> non-determinism = parallel processing + mutable state
 
-- First item, yo
-- Second item, dawg
-- Third item, what what?!
-- Fourth item, fo sheezy my neezy
+Out of these, parallel processing can't be avoided as our processors aren't growing anytime soon. Hence we have to avoid mutable state.
 
-### Oh hai, an ordered list!!
+### The Solution
 
-In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
+![](/assets/return-of-functional-programming/mickey.png){: width="400px" }  
 
-1. First item, yo
-2. Second item, dawg
-3. Third item, what what?!
-4. Fourth item, fo sheezy my neezy
+Here come in functional programming and pure functions.
 
+When is a function <code>pure</code>?
+- It returns the same result if given the same arguments (it is also referred to as deterministic)
+- It does not cause any observable side effects
 
+So functions that use global objects for example would be impure functions.
 
-## Headings are cool! (h2)
+In functional programming, the programmer would no longer have to worry about manually iterating values or accessing the elements of a data structure. All those would be hidden away in a declarative expression. This is so helpful that the imperative languages have now picked up some style in their syntax from this.
 
-Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc. Praesent varius interdum vehicula. Aenean risus libero, placerat at vestibulum eget, ultricies eu enim. Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
+Example: two ways of iterating in Java. The second line is the modern form of expression
 
-Praesent nulla tortor, malesuada adipiscing adipiscing sollicitudin, adipiscing eget est.
+{% highlight java %}
+for ( int i = 0 ; i < list.size ( ) ; ++i ) { doSomethingWith ( list.get ( i ) ) ; }
+for ( SomeType s : list ) { doSomethingWith ( s ) ; }
+{% endhighlight %}
 
-Proin eget nibh a massa vestibulum pretium. Suspendisse eu nisl a ante aliquet bibendum quis a nunc.
+With programs made [mostly](#rng) of pure functions, there'll be less mutable state to deal with. We can now think in terms of function compositions. Making one function out of others, this is sort of like thinking in terms of space, whereas imperative programming is thinking in terms of time. You don't have to worry about concurrent accesses in the functional example, as for each request, it can be served by it's own space, without worrying about affecting others. No need to worry about race conditions, deadlocks etc.
+![](/assets/return-of-functional-programming/time-space.jpg){: width="400px" }
 
-### Tables
+### Example : Scala
+A simple example in Scala of how easy it is to parallelize stuff in modern functional languages with built-in functionality for parallelism. This code separates a list of people into minors and adults.
 
-Title 1               | Title 2               | Title 3               | Title 4
---------------------- | --------------------- | --------------------- | ---------------------
-lorem                 | lorem ipsum           | lorem ipsum dolor     | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
-lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
+{% highlight scala %}
+val people: Array[Person]
+val (minors, adults) = people partition (_.age < 18)
+{% endhighlight %}
 
+Now the same code parallelized
+{% highlight scala %}
+val people: Array[Person]
+val (minors, adults) = people.par partition (_.age < 18)
+{% endhighlight %}
 
-Title 1 | Title 2 | Title 3 | Title 4
---- | --- | --- | ---
-lorem | lorem ipsum | lorem ipsum dolor | lorem ipsum dolor sit
-lorem ipsum dolor sit amet | lorem ipsum dolor sit amet consectetur | lorem ipsum dolor sit amet | lorem ipsum dolor sit
-lorem ipsum dolor | lorem ipsum | lorem | lorem ipsum
-lorem ipsum dolor | lorem ipsum dolor sit | lorem ipsum dolor sit amet | lorem ipsum dolor sit amet consectetur
+That's it. No worrying about writing the parallelization code, locks, software transactional memory YADA YADA
+### The Functional Renaissance
+
+This fundamental compatibility in building concurrent programs has brought back functional programming into the limelight. Now we also have languages that play to the strengths of both the paradigms (Scala). The brevity achieved while writing programs in the recursive way also helps. 
+
+**Done! 🎉**
+
+### Additional resources
+
+- [Martin Odersky, "Working Hard to Keep It Simple" - OSCON Java 2011](https://www.youtube.com/watch?v=3jg1AheF4n0){:target="_blank"}
+- [John Backus's Turing Award Lecture](https://www.thocp.net/biographies/papers/backus_turingaward_lecture.pdf){:target="_blank"}
+
+John Backus's Turing Award Lecture was a watershed for the programming-language community because the inventor of FORTRAN, which was the dominant programming language of the day, stepped forward and said that the main stream of programming practice was flowing in a most unproductive direction. His lecture "Can Programming Be Liberated From the von Neumann Style?" 
+- [lambda-the-ultimate](http://lambda-the-ultimate.org/){:target="_blank"} Good blog on programming language design
+
+#### FUN FACT
+#### <a name="rng"> Any function that relies on a random number generator cannot be pure 🤔 </a>

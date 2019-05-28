@@ -3,7 +3,7 @@ layout: page
 title: Archives
 permalink: /archive/
 ---
- Archives are sorted by newest first.
+Archives are sorted by newest first
 
 <nav class="menu archives text-center" aria-label="browse archives">
   <strong aria-hidden="true">Browse archives by:</strong>

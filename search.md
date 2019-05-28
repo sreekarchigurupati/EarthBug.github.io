@@ -3,8 +3,7 @@ layout: page
 title: Search
 permalink: /search
 ---
-
-<link rel="stylesheet" href="/assets/css/google-custom-search.css">
+> Results maybe stale due to delay in google indexing
 <script>
   (function() {
     var cx = '{{ site.google.search_engine_id }}';

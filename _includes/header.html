@@ -1,4 +1,20 @@
 <header class="site-header">
+  <!-- handling click on dark toggle and setting cookies -->
+  <script>
+    if(sessionStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.toggle('dark');
+    }
+    function clickHandler() {
+      document.documentElement.classList.toggle('dark');
+      if (sessionStorage.getItem('theme') === 'light' || sessionStorage.getItem('theme') === null) {
+        sessionStorage.setItem('theme', 'dark');
+      }
+      else {
+        sessionStorage.setItem('theme', 'light');
+      }
+
+    }
+  </script>
 
   <div class="wrapper">
     {%- assign default_paths = site.pages | map: "path" -%}
@@ -26,8 +42,11 @@
         {%- endunless -%}
         {%- endif -%}
         {%- endfor -%}
+        <!-- dark toggle click -->
+        <a class="page-link" onclick=clickHandler() href="javascript:void(0);">Dark mode</a>
       </div>
     </nav>
     {%- endif -%}
+    
   </div>
 </header>
