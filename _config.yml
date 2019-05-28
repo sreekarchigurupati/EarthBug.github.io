@@ -2,10 +2,13 @@ title: Musings and digressions
 author: Sreekar Chigurupati
 email: chigurupatisreekar@gmail.com
 description: > # this means to ignore newlines until "show_exerpts:"
-  Jotting down random thoughts related to life and work
+  Jotting down random thoughts on life and work
 
 show_excerpts: false # set to true to show excerpts on the homepage
+google_analytics: UA-140873056-1
 
+google:
+  search_engine_id: 010168232464612929882:zfcxabb2jei
 # Pagination Settings
 paginate: 3
 paginate_path: "/page:num/"
@@ -52,3 +55,4 @@ plugins:
  - jekyll-feed
  - jekyll-seo-tag
  - jekyll-paginate
+ - jekyll-archives

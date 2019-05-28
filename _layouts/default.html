@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="icon" href="/favicon.png" type="image/png">
 
-  {%- include head.html -%}
 
-  <body>
+{%- include head.html -%}
 
-    {%- include header.html -%}
+<body>
 
-    <main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
-    </main>
+  {%- include header.html -%}
+  <script src="/assets/js/back-to-top.js"></script>
+  <script>addBackToTop()</script>
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+      {{ content }}
+    </div>
+  </main>
 
-    {%- include footer.html -%}
+  {%- include footer.html -%}
 
-  </body>
+</body>
 
 </html>
