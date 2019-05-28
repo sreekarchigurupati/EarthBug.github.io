@@ -7,6 +7,8 @@ tags: functional-programming moore's-law concurrency parallelism
 ---
 
 But first ...
+![](/assets/return-of-functional-programming/arrow.png)
+
 ## What is functional programming ?
 ![](/assets/return-of-functional-programming/lambda.svg){: width="100px" }
 
