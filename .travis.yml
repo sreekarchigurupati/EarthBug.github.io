@@ -14,3 +14,11 @@ before_install:
   - gem install bundler
   - sudo apt-get install -y python3
   - python3 taggenerator.py
+
+deploy:
+  provider: pages
+  github-token: $GITHUB_TOKEN
+  target-branch: travis-trigger
+  keep-history: true
+  on:
+    branch: master
