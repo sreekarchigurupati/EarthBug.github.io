@@ -1,5 +1,6 @@
 
 language: ruby
+cache: bundler
 python:
   - 3.5
 rvm:
