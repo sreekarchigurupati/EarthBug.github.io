@@ -57,5 +57,5 @@ plugins:
  - jekyll-paginate
  - jekyll-archives
 
- sass:
+sass:
    style: compressed
