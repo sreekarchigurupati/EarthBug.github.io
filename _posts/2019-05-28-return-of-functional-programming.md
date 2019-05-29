@@ -7,10 +7,10 @@ tags: functional-programming moore's-law concurrency parallelism
 ---
 
 But first ...
-![](/assets/return-of-functional-programming/arrow.png)
+![Arrow function](/assets/return-of-functional-programming/arrow.png)
 
 ## What is functional programming ?
-![](/assets/return-of-functional-programming/lambda.svg){: width="100px" }
+![Lambda](/assets/return-of-functional-programming/lambda.svg){: width="100px" }
 
 Functional programming is a programming paradigm in which most computation is treated as evaluation of functions. It emphasizes on expression evaluation instead of command execution. -- [Wikipedia](https://en.wikipedia.org/wiki/Functional_programming){:target="_blank"}
 
@@ -20,7 +20,7 @@ In the 90's, there was a war between declarative programming and imperative prog
 
 You can infer, no doubt that declarative languages won, given the present state of computer languages. One big reason for this is that the process of writing code in an imperative fashion closely mimics the way programs are executed inside the computer. The theoretical basis of the modern computer being the von Neumann computer.
 
-![](/assets/return-of-functional-programming/von-neumann.svg)  
+![von Neumann model](/assets/return-of-functional-programming/von-neumann.svg)  
 
 Image by <a href="//commons.wikimedia.org/w/index.php?title=User:Kapooht&amp;action=edit&amp;redlink=1" class="new" title="User:Kapooht (page does not exist)">Kapooht</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=25789639">Link</a>
 
@@ -28,11 +28,11 @@ As you can see, the von Neumann model is closely mimicked by the execution flow 
 
 ## What changed?
 
-![](/assets/return-of-functional-programming/rewind-time.jpg)  
+![It's rewind time!](/assets/return-of-functional-programming/rewind-time.jpg)  
 
 It's time to remember a legend. [Gordon Moore](https://en.wikipedia.org/wiki/Gordon_Moore). He observed that the number of components on a dense integrated circuit doubles every year. [Moore's Law](https://en.wikipedia.org/wiki/Moore%27s_law)
 
-![](/assets/return-of-functional-programming/moores-law.svg){: width="400px" }  
+![Moore's Law](/assets/return-of-functional-programming/moores-law.svg){: width="400px" }  
 
 Image by <a href="//commons.wikimedia.org/wiki/User:Wgsimon" title="User:Wgsimon">Wgsimon</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=15193542">Link</a>
 
@@ -67,7 +67,7 @@ Out of these, parallel processing can't be avoided as our processors aren't grow
 
 ### The Solution
 
-![](/assets/return-of-functional-programming/mickey.png){: width="400px" }  
+![Mickey meme](/assets/return-of-functional-programming/mickey.png){: width="400px" }  
 
 Here come in functional programming and pure functions.
 
@@ -87,7 +87,7 @@ for ( SomeType s : list ) { doSomethingWith ( s ) ; }
 {% endhighlight %}
 
 With programs made [mostly](#rng) of pure functions, there'll be less mutable state to deal with. We can now think in terms of function compositions. Making one function out of others, this is sort of like thinking in terms of space, whereas imperative programming is thinking in terms of time. You don't have to worry about concurrent accesses in the functional example, as for each request, it can be served by it's own space, without worrying about affecting others. No need to worry about race conditions, deadlocks etc.
-![](/assets/return-of-functional-programming/time-space.jpg){: width="400px" }
+![Time vs Space](/assets/return-of-functional-programming/time-space.jpg){: width="400px" }
 
 ### Example : Scala
 A simple example in Scala of how easy it is to parallelize stuff in modern functional languages with built-in functionality for parallelism. This code separates a list of people into minors and adults.
