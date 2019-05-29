@@ -56,3 +56,6 @@ plugins:
  - jekyll-seo-tag
  - jekyll-paginate
  - jekyll-archives
+
+ sass:
+   style: compressed
