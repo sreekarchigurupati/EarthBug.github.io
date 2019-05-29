@@ -9,4 +9,5 @@ env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
 before_install:
+  - sudo apt-get install -y python3
   - python3 taggenerator.py
