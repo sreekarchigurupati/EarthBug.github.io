@@ -9,7 +9,7 @@ permalink: /cv/
 	display: inline-block;
 	position: relative;
 	padding: 10px 25px;
-  
+	border-radius: 25px;
 	background-color: #d7bef7;
 	color: white;
   
