@@ -1,15 +1,16 @@
+
 language: ruby
 cache: bundler
+python:
+  - 3.5
 rvm:
-  - 2.6
-  - 2.4
-
-before_install: gem update --system
-install: script/bootstrap
-script: script/cibuild
-
+  - 2.3
+script: bundle exec rake test
 env:
-  matrix:
-    - JEKYLL_VERSION="~> 3.5"
-    - JEKYLL_VERSION="~> 3.8.0"
-    - JEKYLL_VERSION=">= 4.0.0.pre.alpha1"
+  global:
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+before_install:
+  - gem update --system
+  - gem install bundler
+  - sudo apt-get install -y python3
+  - python3 taggenerator.py
