@@ -81,7 +81,7 @@ function musicPlay() {
             }
 
         </script>
-        <img class="image" src="/assets/imgs/gandalfsax.gif" draggable="false">
+        <img class="image" src="/assets/imgs/gandalfsax.gif" draggable="false" alt="gandalf">
         <audio id="sax" class="hidden" controls autoplay loop>
 
             <source src="/assets/audio/gandalfsax_audio.mp3" type="audio/mpeg">
