@@ -18,7 +18,7 @@ Functional programming is a programming paradigm in which most computation is tr
 
 In the 90's, there was a war between declarative programming and imperative programming. Declarative programming then represented by logic programming languages like Prolog and early functional languages like Erlang. And imperative languages were represented by procedural languages like C and object-oriented languages like Perl. These used abstract data types and procedures (sequence of commands) to compute.
 
-You can infer, no doubt that declarative languages won, given the present state of computer languages. One big reason for this is that the process of writing code in an imperative fashion closely mimics the way programs are executed inside the computer. The theoretical basis of the modern computer being the von Neumann computer.
+You can infer, no doubt that imperative languages won, given the present state of computer languages. One big reason for this is that the process of writing code in an imperative fashion closely mimics the way programs are executed inside the computer. The theoretical basis of the modern computer being the von Neumann computer.
 
 ![von Neumann model](/assets/return-of-functional-programming/von-neumann.svg)  
 
