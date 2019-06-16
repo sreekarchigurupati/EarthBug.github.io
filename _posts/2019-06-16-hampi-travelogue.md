@@ -197,6 +197,15 @@ You'll see a small structure along the bank. This is the **Purandaradasa Mantapa
 
 Keep walking and you'll come to **Kodandarama Temple**. Here you can find coracle boat rides, if you're up for it. Keep walking onto Hampi Baazar Street and then your homestay.
 
+![Kodandarama Temple](/assets/hampi-travelogue/kodandarama-temple.jpg)
+ 
+*Kodandarama Temple*
+
+![Coracle point](/assets/hampi-travelogue/coracle
+-ride.jpg)
+ 
+*Coracle point*
+
 **IMPORTANT: Have breakfast now and check out of the homestay if you're only staying for 2 days as you'll not be needing the room anymore and can avoid another day's charge**
 
 Go hire bicycles/mopeds now. They'll be located very close to the homestays.
