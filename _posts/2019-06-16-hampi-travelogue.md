@@ -201,8 +201,7 @@ Keep walking and you'll come to **Kodandarama Temple**. Here you can find coracl
  
 *Kodandarama Temple*
 
-![Coracle point](/assets/hampi-travelogue/coracle
--ride.jpg)
+![Coracle point](/assets/hampi-travelogue/coracle-ride.jpg)
  
 *Coracle point*
 
