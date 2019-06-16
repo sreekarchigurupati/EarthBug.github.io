@@ -270,7 +270,7 @@ An engineering marvel of the bygone era, it brought water from a canal to the ba
 *Aquaduct*
 
 #### Square stepped tank
-An beautiful symmetric bath tank made from black schist stones used by the royals.
+A beautiful symmetric bath tank made from black schist stones used by the royals.
 
 ![Stepped Tank](/assets/hampi-travelogue/stepped-tank.jpg)
  
