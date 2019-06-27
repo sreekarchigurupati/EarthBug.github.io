@@ -36,7 +36,7 @@ It's time to remember a legend. [Gordon Moore](https://en.wikipedia.org/wiki/Gor
 
 Image by <a href="//commons.wikimedia.org/wiki/User:Wgsimon" title="User:Wgsimon">Wgsimon</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=15193542">Link</a>
 
-Over the past few years, the trend has subsided as controlling the control flow in the thin channel is becoming more difficult. We cannot make chips smaller anymore, unless there are revolutionary advancements in technology. To keep with the growing demand for computer power, we'll have to add more cores on a chip or use more chips. Huge volume workloads that require horizontal scaling are becoming more common. So we'll have to write software that better gels with the hardware we have.
+Over the past few years, the trend has subsided as controlling the current flow in the thin channel is becoming more difficult. We cannot make chips smaller anymore, unless there are revolutionary advancements in technology. To keep up with the growing demand for computer power, we'll have to add more cores on a chip or use more chips. Huge volume workloads that require horizontal scaling are becoming more common. So we'll have to write software that better gels with the hardware we have.
 
 
 There are two facets to this problem
@@ -45,7 +45,7 @@ There are two facets to this problem
 
 Parallel programming means using multiple units of hardware to compute something and speed up the process. But the program itself doesn't require this, it can still be solved on a single unit of hardware without any loss of functionality apart from speed.
 
-Concurrent programming refers to programs that are inherently concurrent, that need to process large number of requests. Eg. Twitter. This has to be done in real-time and cannot be done in a sequential way.
+Concurrent programming refers to programs that are inherently concurrent - multiple processes executing at the same time, that need to process large number of requests. Eg. Twitter. This has to be done in real-time and cannot be done in a sequential way.
 
 While using conventional / imperative programming to implement either of these, we face some fundamental problems.
 ## The root of the problem
