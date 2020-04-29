@@ -4,4 +4,4 @@
 
 Based on the Minima Jekyll theme
 
-Add contents of <code>hooks/pre-commit</code> to <code>/.git/hooks/pre-commit</code> and <code>chmod +x pre-commit</code> for the auto tag generation before each commit to work.
+Execute <code>activate_hooks.sh</code>  for the auto tag generation before each commit to work.
