@@ -1,12 +1,12 @@
 <header class="site-header">
   <!-- handling click on dark toggle and setting cookies -->
   <script>
-    if(sessionStorage.getItem('theme') === 'dark') {
+    if(sessionStorage.getItem('theme') === 'dark' || (sessionStorage.getItem('theme') === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.toggle('dark');
     }
     function clickHandler() {
       document.documentElement.classList.toggle('dark');
-      if (sessionStorage.getItem('theme') === 'light' || sessionStorage.getItem('theme') === null) {
+      if (sessionStorage.getItem('theme') === 'light' || (sessionStorage.getItem('theme') === null && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         sessionStorage.setItem('theme', 'dark');
       }
       else {
