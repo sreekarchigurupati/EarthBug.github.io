@@ -79,6 +79,7 @@ Walk towards Moghalpura road from Moti Galli road and take a turn towards charmi
 
 ## Candy for the kids - Afjan Dates & Nuts
 ![Candy and nuts at Afjan](/assets/charminar-food-tour/afjan.jpg)
+*Candy and nuts at Afjan*
 
 If you want to carry some stuff back home for kids or relatives, head straight past Charminar from Al Akbar onto Afjan Dates & Nuts. They have a huge collection of dry fruits, candy, chocolates and coated dates.
 
@@ -121,7 +122,7 @@ On the way back to the city, Visit Hameedi Confectioners which is situated just 
 One can wander over to the [Mozamjahi market](https://en.wikipedia.org/wiki/Moazzam_Jahi_Market){:target="_blank"} to shop and have a look at the clock tower. Constructed in 1935 by the last Nizam, it has many shops now and also houses a very old famous ice cream shop aptly named "Famous Ice Cream Shop".
 
 ## Fin
-That concludes a lengthy gastronomic and cultural tour of the surroundings of Charminar. Of course there are always more places to see and more dishes to taste. I will note down a few worthy of mention, Interested folks can fit it into their itinerary.
+That concludes a lengthy gastronomic and cultural tour of the surroundings of Charminar. Of course there are always more places to see and more dishes to taste. I will note down a few worthy of mention, Interested folks can fit them into their itinerary.
 
 ## Additional Mentions
 ![River Musi and the Salar Jung Musuem at sunrise](/assets/charminar-food-tour/salarjung.jpg)
@@ -131,10 +132,10 @@ That concludes a lengthy gastronomic and cultural tour of the surroundings of Ch
 *Interiors of Aza Khana-e-Zehra*
 
 - [Aza Khana-e-Zehra](https://en.wikipedia.org/wiki/Aza_Khane_Zehra){:target="_blank"} is an ashurkhana built by the last Nizam of Hyderabad, Mir Osman Ali Khan in memory of his mother Zehra Begum. It houses a beautiful chandlier and interiors.It is close to Munshi Naan and can be visited at the beginning. Note that it is a religious place and might need females to dress modestly and wear a head covering.
-- [Salar Jung Museum](https://en.wikipedia.org/wiki/Salar_Jung_Museum){:target="_blank"} is one of the three national musuems of India. It started as an extensive collection of artefacts by Salar Jung III, the Prime Minister of Hyderabad. This is a vast musuem and ideally takes up a day to visit.
+- [Salar Jung Museum](https://en.wikipedia.org/wiki/Salar_Jung_Museum){:target="_blank"} is one of the three national musuems of India. It started as an extensive collection of artefacts by Salar Jung III, the Prime Minister of Hyderabad. This is a vast musuem and ideally takes up a day entirely in itself to visit.
 - Pani Puri and Kesar Pista Lassi at Agra Mithaiwala
 - Shahjahani Kunda at Nazeer juice center (A dry fruit based drink)
-- Mutton Lukhmi at Pista House(Square shaped meat fritters)
+- Mutton Lukhmi at Pista House (Square shaped meat fritters)
 
 ## Notes
 - Start your visit in the morning to avoid crowds. But too early in the morning and nothing will be open, so check the timings of each establishment.
