@@ -4,4 +4,4 @@
 
 Based on the Minima Jekyll theme
 
-Execute <code>activate_hooks.sh</code> after cloning for the auto tag generation to work.
+Execute <code>execute-before-commit.sh</code> for tag generation.

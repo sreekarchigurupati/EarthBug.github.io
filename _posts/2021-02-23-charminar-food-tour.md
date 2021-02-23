@@ -139,4 +139,4 @@ That concludes a lengthy gastronomic and cultural tour of the surroundings of Ch
 
 ## Notes
 - Start your visit in the morning to avoid crowds. But too early in the morning and nothing will be open, so check the timings of each establishment.
-- If the pandemic is still on by the time you travel, wear a mask and don't go on weekends to avoid crowds
+- If the pandemic is still on by the time you travel, wear a mask and don't go on weekends to avoid crowds.

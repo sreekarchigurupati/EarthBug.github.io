@@ -1,5 +1,0 @@
-# Add the following content to /.git/hooks/pre-commit
-#!/bin/sh
-#
-python3 taggenerator.py
-git add .
