@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: hampi"
-tag: hampi
+title: "Tag: hyderabad"
+tag: hyderabad
 robots: noindex
 ---

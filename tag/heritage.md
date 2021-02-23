@@ -1,6 +1,6 @@
 ---
 layout: tagpage
-title: "Tag: hampi"
-tag: hampi
+title: "Tag: heritage"
+tag: heritage
 robots: noindex
 ---
