@@ -1,6 +1,6 @@
 # Jekyll repo for sreekar.ch
 
-[![Build Status](https://travis-ci.com/EarthBug/EarthBug.github.io.svg?branch=master)](https://travis-ci.com/EarthBug/EarthBug.github.io)
+[![Build Status](https://app.travis-ci.com/sreekarchigurupati/EarthBug.github.io.svg?branch=master)](https://travis-ci.com/sreekarchigurupati/EarthBug.github.io)
 
 Based on the Minima Jekyll theme
 
