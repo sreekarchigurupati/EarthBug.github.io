@@ -5,6 +5,16 @@ url: "https://sreekar.ch"
 description: > # this means to ignore newlines until "show_exerpts:"
   Jotting down random thoughts on life and work
 
+collections:
+  - talks
+
+include:
+  - _pages
+
+nav_pages:
+  - about: "about"
+  - blog: "archive"
+
 show_excerpts: false # set to true to show excerpts on the homepage
 google_analytics: UA-140873056-1
 

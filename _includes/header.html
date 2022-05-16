@@ -1,6 +1,7 @@
 <header class="site-header">
+  <!-- Uncomment for dark mode -->
   <!-- handling click on dark toggle and setting cookies -->
-  <script>
+  <!-- <script>
     if(sessionStorage.getItem('theme') === 'dark' || (sessionStorage.getItem('theme') === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.toggle('dark');
     }
@@ -14,7 +15,7 @@
       }
 
     }
-  </script>
+  </script> -->
 
   <div class="wrapper">
     {%- assign default_paths = site.pages | map: "path" -%}
@@ -34,7 +35,7 @@
       </label>
 
       <div class="trigger">
-        {%- for path in page_paths -%}
+        <!-- {%- for path in page_paths -%}
         {%- assign my_page = site.pages | where: "path", path | first -%}
         {%- if my_page.title -%}
         {%- unless my_page.title contains 'Tag:' -%}
@@ -45,9 +46,14 @@
         {%- endunless -%}
         {%- endunless -%}
         {%- endif -%}
-        {%- endfor -%}
+        {%- endfor -%} -->
+
+        {% for page in site.nav_pages %}
+        <a class="page-link" href="{{ page.first[1] | relative_url }}">{{ page.first[0] | capitalize }}</a>
+        {% endfor %}
+        <!-- Uncomment for dark mode -->
         <!-- dark toggle click -->
-        <a class="page-link" onclick=clickHandler() href="javascript:void(0);">Dark mode</a>
+        <!-- <a class="page-link" onclick=clickHandler() href="javascript:void(0);">Dark mode</a> -->
       </div>
     </nav>
     {%- endif -%}
