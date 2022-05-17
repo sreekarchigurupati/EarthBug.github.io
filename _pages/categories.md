@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Categories
+title: Blog
 permalink: /categories/
 ---
-Archives are sorted by newest first
+<!-- Archives are sorted by newest first -->
 <nav class="menu archives text-center" aria-label="browse archives">
   <strong aria-hidden="true">Browse archives by:</strong>
   <a href="/archive">year</a>
