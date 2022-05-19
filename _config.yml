@@ -6,7 +6,8 @@ description: > # this means to ignore newlines until "show_exerpts:"
   Jotting down random thoughts on life and work
 
 collections:
-  - talks
+  talks:
+    output: true
 
 include:
   - _pages
@@ -14,6 +15,7 @@ include:
 nav_pages:
   - about: "about"
   - blog: "archive"
+  - talks: "talks"
 
 show_excerpts: false # set to true to show excerpts on the homepage
 google_analytics: UA-140873056-1

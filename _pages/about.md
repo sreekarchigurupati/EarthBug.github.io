@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 ### Sreekar Chigurupati 👦👨‍💻
-#### IT Developer
+#### Neuroscience & AI PhD Student
 **Foodie**. **Tech enthusiast**. **Meme connoisseur**.  
 You'll find me listening to classical fusion music or watching corgi videos while not writing code.
 

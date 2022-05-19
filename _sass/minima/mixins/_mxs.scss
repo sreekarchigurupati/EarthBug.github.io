@@ -1,0 +1,10 @@
+@mixin box-shadow($shadow...) {
+    -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
+            box-shadow: $shadow;
+  }
+  $grid-gutter-width:         30px !default;
+  @mixin make-row($gutter: $grid-gutter-width) {
+    margin-left:  ceil(($gutter / -2));
+    margin-right: floor(($gutter / -2));
+    @include clearfix;
+  }
