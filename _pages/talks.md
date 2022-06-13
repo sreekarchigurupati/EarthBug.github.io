@@ -18,7 +18,7 @@ permalink: /talks/
 <div class="col-sm-6 clearfix">
  <div class="well">
   <pubtit>{{ talk.title }}</pubtit>
-  <p><img src="{{ site.url }}/assets/imgs/talks/{{ talk.image }}" class="img-responsive" width="50%" style="float: left" /></p>
+  <p><img src="{{ site.url }}/assets/imgs/talks/{{ talk.image }}" class="img-responsive" width="50%" style="float: left"  alt="{{ talk.title }}"/></p>
   <p>{{ talk.description }}</p>
 
   <p style="float: none;"><em>{{ talk.location }}</em></p>

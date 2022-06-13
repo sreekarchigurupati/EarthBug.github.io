@@ -116,7 +116,7 @@ This fundamental compatibility in building concurrent programs has brought back 
 - [John Backus's Turing Award Lecture](https://www.thocp.net/biographies/papers/backus_turingaward_lecture.pdf){:target="_blank"}
 
 John Backus's Turing Award Lecture was a watershed for the programming-language community because the inventor of FORTRAN, which was the dominant programming language of the day, stepped forward and said that the main stream of programming practice was flowing in a most unproductive direction. His lecture "Can Programming Be Liberated From the von Neumann Style?" 
-- [lambda-the-ultimate](http://lambda-the-ultimate.org/){:target="_blank"} Good blog on programming language design
+- [lambda-the-ultimate](https://web.archive.org/web/20211205090101/http://lambda-the-ultimate.org/){:target="_blank"} Good blog on programming language design
 
 #### FUN FACT
 #### <a name="rng"> Any function that relies on a random number generator cannot be pure 🤔 </a>
