@@ -17,6 +17,8 @@ nav_pages:
   - blog: "archive"
   - talks: "talks"
 
+destination: docs/
+
 show_excerpts: false # set to true to show excerpts on the homepage
 google_analytics: UA-140873056-1
 
@@ -29,6 +31,7 @@ permalink: /:year/:month/:day/:title.html
 # Minima date format
 # refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this
 minima:
+  skin: dark
   date_format: "%b %-d, %Y"
 
   # generate social links in footer

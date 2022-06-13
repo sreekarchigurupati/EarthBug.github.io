@@ -2,9 +2,9 @@
 language: ruby
 cache: bundler
 python:
-  - 3.8
+  - 3.9
 rvm:
-  - 2.7
+  - 3.1.0
 script: bundle exec rake test
 env:
   global:
