@@ -1,4 +1,4 @@
-title: Musings and digressions
+title: Sreekar Chigurupati
 author: Sreekar Chigurupati
 email: chigurupatisreekar@gmail.com
 url: "https://sreekar.ch"
@@ -37,11 +37,9 @@ minima:
 
   # generate social links in footer
   social_links:
-    twitter: sreekarchiguru
     github:  sreekarchigurupati
     rss: rss
     # dribbble: jekyll
-    facebook: chigurupatisreekar
     # flickr:   jekyll
     instagram: sreekarchigurupati
     linkedin: sreekar-chigurupati
