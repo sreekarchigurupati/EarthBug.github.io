@@ -1,45 +1,37 @@
 ---
 title: "Talks"
-layout: gridlay
+layout: page
 permalink: /talks/
+hide_title: true
 ---
 
-# Talks
+<section class="about-hero reveal">
+  <h1 class="about-name">Talks</h1>
+  <p class="about-role">Selected presentations, lectures, and reading-group sessions</p>
+</section>
 
-{% assign number_printed = 0 %}
-{% for talk in site.talks %}
-
-{% assign even_odd = number_printed | modulo: 2 %}
-
-{% if even_odd == 0 %}
-<div class="row">
-{% endif %}
-
-<div class="col-sm-6 clearfix">
- <div class="well">
-  <pubtit>{{ talk.title }}</pubtit>
-  <p><img src="{{ site.url }}/assets/imgs/talks/{{ talk.image }}" class="img-responsive" width="50%" style="float: left"  alt="{{ talk.title }}"/></p>
-  <p>{{ talk.description }}</p>
-
-  <p style="float: none;"><em>{{ talk.location }}</em></p>
-   <p><em>{{ talk.date | date: "%a, %b %d, %Y" }}</em></p>
-  <p><strong><a href="{{ talk.link.url }}">{{ talk.link.display }}</a></strong></p>
-  <p class="text-danger"><strong> {{ talk.news1 }}</strong></p>
-  <p> {{ talk.news2 }}</p>
- </div>
-</div>
-
-{% assign number_printed = number_printed | plus: 1 %}
-
-{% if even_odd == 1 %}
-</div>
-{% endif %}
-
+<div class="talks-list reveal">
+{% assign talks_by_year = site.talks | sort: "date" | reverse | group_by_exp: "talk", "talk.date | date: '%Y'" %}
+{% for year in talks_by_year %}
+  <h2 class="talks-year">{{ year.name }}</h2>
+  {% for talk in year.items %}
+  <article class="pub-item talk-item">
+    {% if talk.image %}
+    <a class="talk-thumb" href="{{ talk.link.url | default: '#' }}"{% if talk.link.url contains '://' %} target="_blank" rel="noopener"{% endif %} aria-label="{{ talk.title | escape }}">
+      <img src="{{ site.url }}/assets/imgs/talks/{{ talk.image }}" alt="{{ talk.title | escape }}" loading="lazy" />
+    </a>
+    {% endif %}
+    <div class="talk-body">
+      <h3 class="pub-title">{{ talk.title }}</h3>
+      <p class="pub-venue"><em>{{ talk.location }}</em> · {{ talk.date | date: "%b %-d, %Y" }}</p>
+      {% if talk.description %}<p class="pub-authors">{{ talk.description }}</p>{% endif %}
+    </div>
+    {% if talk.link.url %}
+    <div class="pub-links">
+      <a href="{{ talk.link.url }}"{% if talk.link.url contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ talk.link.display | default: "Slides" }}</a>
+    </div>
+    {% endif %}
+  </article>
+  {% endfor %}
 {% endfor %}
-
-{% assign even_odd = number_printed | modulo: 2 %}
-{% if even_odd == 1 %}
 </div>
-{% endif %}
-
-

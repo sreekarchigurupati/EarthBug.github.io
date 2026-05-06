@@ -1,21 +1,79 @@
 ---
 layout: default
 pagination:
-enabled: true
+  enabled: true
 ---
 
 <div class="home">
-  {%- if page.title -%}
-  <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+
+  <section class="hero">
+    <div class="hero-topline">
+      <div class="t-left"><span class="dot">●</span> &nbsp;Sreekar Chigurupati / Index [2026]</div>
+      <div class="t-mid">Neuroscience &middot; Artificial Intelligence &middot; PhD</div>
+      <div class="t-right" id="localTime">— : —</div>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="w1"><span style="--d:0.05s" class="split-line-animated">Teaching</span></span>
+      <span class="w1"><span style="--d:0.18s" class="split-line-animated">machines</span></span>
+      <span class="w2"><span style="--d:0.30s" class="split-line-animated">to learn <span class="amp">&amp;</span> <span class="italic">remember.</span></span></span>
+    </h1>
+
+    <p class="hero-lede reveal">
+      I'm a PhD student working where <strong>computational neuroscience</strong> collides with <strong>machine learning</strong> — probing representation geometry, learning rules, and the small prints of what makes a model <em>generalise</em>. Currently sketching more than I ship.
+    </p>
+
+    <div class="hero-meta reveal delay-1">
+      <div class="cell">
+        <div class="lbl">/ Location</div>
+        <div class="val">Somewhere, <br>latitude pending.</div>
+      </div>
+      <div class="cell">
+        <div class="lbl">/ Currently</div>
+        <div class="val"><a href="/now/">Representation geometry in RNNs →</a></div>
+      </div>
+      <div class="cell">
+        <div class="lbl">/ Available for</div>
+        <div class="val">Collaborations, reviews, <br>long walks past whiteboards.</div>
+      </div>
+      <div class="cell">
+        <div class="lbl">/ Contact</div>
+        <div class="val"><a href="mailto:chigurupatisreekar@gmail.com">Open inbox ↗</a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee reveal">
+    <div class="marquee-track">
+      <span>
+        Neuroscience <span class="sep">◆</span>
+        Representation Geometry <span class="sep">◆</span>
+        Self-Supervision <span class="sep">◆</span>
+        Interpretability <span class="sep">◆</span>
+        Recurrent Dynamics <span class="sep">◆</span>
+        Sample Efficiency <span class="sep">◆</span>
+        నేడు జీవించు <span class="sep">◆</span>
+      </span>
+      <span aria-hidden="true">
+        Neuroscience <span class="sep">◆</span>
+        Representation Geometry <span class="sep">◆</span>
+        Self-Supervision <span class="sep">◆</span>
+        Interpretability <span class="sep">◆</span>
+        Recurrent Dynamics <span class="sep">◆</span>
+        Sample Efficiency <span class="sep">◆</span>
+        నేడు జీవించు <span class="sep">◆</span>
+      </span>
+    </div>
+  </div>
 
   {{ content }}
 
   {%- if site.posts.size > 0 -%}
-  <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
+  <h2 class="post-list-heading"><span>/ 03 — Field Notes</span><span>{{ page.list_title | default: "Recent Entries" }}</span></h2>
+
   <ul class="post-list">
     {%- for post in paginator.posts -%}
-    <li>
+    <li class="reveal">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       <span class="post-meta">{{ post.date | date: date_format }}</span>
       <h3>
@@ -23,43 +81,30 @@ enabled: true
           {{ post.title | escape }}
         </a>
       </h3>
-      {%- if site.show_excerpts -%}
-      {{ post.excerpt }}
-      {%- endif -%}
       {% if post.tags.size > 0 %}
-      <span>|
-        {% for tag in post.tags %}
-        {% capture tag_name %}{{ tag }}{% endcapture %}
-        <a href="/tag/{{ tag_name }}"><code><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
-        {% endfor %} |
+      <span>
+        {% for tag in post.tags %}<a href="/tag/{{ tag }}"><code>{{ tag }}</code></a>&nbsp;{% endfor %}
       </span>
       {%- endif -%}
     </li>
     {%- endfor -%}
   </ul>
 
-  <!-- Pagination links -->
   <div class="pagination">
     {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}" class="previous">
-      Previous
-    </a>
+      <a href="{{ paginator.previous_page_path }}" class="previous">← Previous</a>
     {% else %}
-    <span class="previous">Previous</span>
+      <span class="previous">← Previous</span>
     {% endif %}
-    <span class="page_number ">
-      Page: {{ paginator.page }} of {{ paginator.total_pages }}
-    </span>
+    <span class="page_number">Page {{ paginator.page }} / {{ paginator.total_pages }}</span>
     {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+      <a href="{{ paginator.next_page_path }}" class="next">Next →</a>
     {% else %}
-    <span class="next ">Next</span>
+      <span class="next">Next →</span>
     {% endif %}
   </div>
 
-  <p class="feed-subscribe"><svg class="svg-icon orange">
-      <use xlink:href="{{ '/assets/minima-social-icons.svg#rss' | relative_url }}"></use>
-    </svg><a href="{{ "/feed.xml" | relative_url }}">Subscribe</a></p>
+  <p class="feed-subscribe"><a href="{{ "/feed.xml" | relative_url }}">→ Subscribe via RSS</a></p>
   {%- endif -%}
 
 </div>
