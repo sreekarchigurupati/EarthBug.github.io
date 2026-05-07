@@ -145,7 +145,7 @@ permalink: /cv/
   <p>
     <a href="mailto:chigurupatisreekar@gmail.com">chigurupatisreekar@gmail.com</a> ·
     <a href="https://github.com/sreekarchigurupati">GitHub</a> ·
-    <a href="https://scholar.google.com/citations?user=BXjw99IAAAAJ">Scholar</a> ·
+    {%- comment -%}<a href="https://scholar.google.com/citations?user=BXjw99IAAAAJ">Scholar</a> ·{%- endcomment -%}
     <a href="https://www.linkedin.com/in/sreekar-chigurupati">LinkedIn</a>
   </p>
 </section>

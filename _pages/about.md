@@ -81,7 +81,7 @@ hide_title: true
   <h2>Elsewhere on the internet</h2>
   <p class="about-links">
     <a href="https://github.com/sreekarchigurupati">GitHub</a> ·
-    <a href="https://scholar.google.com/citations?user=BXjw99IAAAAJ">Google Scholar</a> ·
+    {%- comment -%}<a href="https://scholar.google.com/citations?user=BXjw99IAAAAJ">Google Scholar</a> ·{%- endcomment -%}
     <a href="https://www.linkedin.com/in/sreekar-chigurupati">LinkedIn</a> ·
     <a href="https://instagram.com/sreekarchigurupati">Instagram</a> ·
     <a href="/assets/cv.pdf" download="Sreekar Chigurupati - CV.pdf">CV (PDF)</a>

@@ -10,9 +10,11 @@ hide_title: true
   <p class="about-role">Peer-reviewed work, preprints, and workshop papers</p>
 </section>
 
+{%- comment -%}
 <section class="about-section reveal">
   <p class="about-subtle">See also my <a href="https://scholar.google.com/citations?user=BXjw99IAAAAJ" target="_blank" rel="noopener">Google Scholar profile</a> for the most up-to-date list.</p>
 </section>
+{%- endcomment -%}
 
 <section class="about-section reveal">
   <h2>2026</h2>
