@@ -1,16 +1,25 @@
 ---
 layout: default
 ---
+{%- if page.hide_title -%}
+{%- comment -%}
+  Wide pages (publications, projects, talks, news, now, cv, gallery, archives)
+  supply their own .about-hero / .about-section blocks that self-center at the
+  site width (--maxw). Don't wrap them in the narrow .post reading column.
+{%- endcomment -%}
+<div class="page-wide post-content">
+  {{ content }}
+</div>
+{%- else -%}
 <article class="post">
 
-  {% unless page.hide_title %}
   <header class="post-header">
     <h1 class="post-title">{{ page.title | escape }}</h1>
   </header>
-  {% endunless %}
 
   <div class="post-content">
     {{ content }}
   </div>
 
 </article>
+{%- endif -%}

@@ -1,48 +1,14 @@
-<footer class="site-footer h-card">
-  <data class="u-url" href="{{ "/" | relative_url }}"></data>
-
+<footer class="site-footer">
   <div class="wrapper">
-    <div class="footer-mark">
-      Still <em>figuring</em> it out<span style="color:var(--signal)">.</span>
-    </div>
-
     <div class="footer-grid">
       <div class="col">
-        <h4>The Author</h4>
-        <ul>
-          <li>{{ site.author | default: "Sreekar Chigurupati" | escape }}</li>
-          <li>Neuroscience &times; AI · PhD</li>
-          {%- if site.email -%}
-          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-          {%- endif -%}
-        </ul>
+        <span>© {{ 'now' | date: '%Y' }} Sreekar Chigurupati</span>
       </div>
-
       <div class="col">
-        <h4>Navigate</h4>
-        <ul>
-          <li><a href="/about/">About</a></li>
-          <li><a href="/projects/">Projects</a></li>
-          <li><a href="/publications/">Publications</a></li>
-          <li><a href="/news/">News</a></li>
-          <li><a href="/cv/">CV</a></li>
-        </ul>
+        <a href="https://github.com/sreekarchigurupati">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/sreekar-chigurupati">LinkedIn ↗</a>
+        <a href="mailto:chigurupatisreekar@gmail.com">Email ↗</a>
       </div>
-
-      <div class="col">
-        <h4>Elsewhere</h4>
-        <ul>
-          <li><a href="https://github.com/sreekarchigurupati">GitHub ↗</a></li>
-          {%- comment -%}<li><a href="https://scholar.google.com/citations?user=BXjw99IAAAAJ">Scholar ↗</a></li>{%- endcomment -%}
-          <li><a href="https://www.linkedin.com/in/sreekar-chigurupati">LinkedIn ↗</a></li>
-          <li><a href="https://instagram.com/sreekarchigurupati">Instagram ↗</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-sign">
-      <span>© {{ 'now' | date: "%Y" }} — Handset in Fraunces &amp; JetBrains Mono</span>
-      <span>Built with Jekyll &middot; No tracking &middot; Press ⌘K</span>
     </div>
   </div>
 </footer>

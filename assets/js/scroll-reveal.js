@@ -10,7 +10,7 @@
     if (!els.length) return;
 
     if (!('IntersectionObserver' in window)) {
-      Array.prototype.forEach.call(els, function (el) { el.classList.add('is-visible'); });
+      Array.prototype.forEach.call(els, function (el) { el.classList.add('is-visible'); el.classList.add('in'); });
       return;
     }
 
@@ -19,6 +19,7 @@
         if (!entry.isIntersecting) return;
         var el = entry.target;
         el.classList.add('is-visible');
+        el.classList.add('in');
         var rect = el.getBoundingClientRect();
         try {
           window.dispatchEvent(new CustomEvent('particle:burst', {

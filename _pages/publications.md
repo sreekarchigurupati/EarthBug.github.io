@@ -6,7 +6,7 @@ hide_title: true
 ---
 
 <section class="about-hero reveal">
-  <h1 class="about-name">Publications</h1>
+  <h1 class="about-name"><em>Publications.</em></h1>
   <p class="about-role">Peer-reviewed work, preprints, and workshop papers</p>
 </section>
 

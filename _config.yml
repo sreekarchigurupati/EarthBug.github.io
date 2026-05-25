@@ -13,7 +13,7 @@ include:
   - _pages
 
 nav_pages:
-  - about: "about"
+  - now: "now"
   - projects: "projects"
   - publications: "publications"
   - news: "news"

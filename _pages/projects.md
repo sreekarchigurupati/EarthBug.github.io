@@ -6,104 +6,86 @@ hide_title: true
 ---
 
 <section class="about-hero reveal">
-  <h1 class="about-name">Projects</h1>
-  <p class="about-role">Research, side builds, and experiments</p>
+  <h1 class="about-name">Selected work, <em>in progress.</em></h1>
+  <p class="about-role">Research, side builds, and experiments — 2023 to present</p>
 </section>
 
-<section class="wide-section reveal">
-  <div class="projects-grid">
+<section class="section reveal">
+  <div class="section-head section-head--stacked">
+    <div class="num">/ 02</div>
+    <h2>Index of <em>projects.</em></h2>
+    <div class="meta">06 Entries · Hover to preview</div>
+  </div>
 
-    <article class="project-card reveal">
-      <div class="project-head">
-        <h3>Representation Geometry Probes</h3>
-        <span class="project-year">2025 —</span>
-      </div>
-      <p>Probing how recurrent networks encode task structure, and whether the geometry of learned representations predicts generalisation.</p>
-      <div class="project-tags">
-        <span>PyTorch</span><span>JAX</span><span>RNNs</span><span>Research</span>
-      </div>
-      <div class="project-links">
-        <a href="#">Paper</a>
-        <a href="#">Code</a>
-      </div>
-    </article>
+  <div class="work-list" id="workList">
+    <a class="work-row" data-prev="rg" href="#">
+      <div class="work-num">W.01</div>
+      <div class="work-title">Representation Geometry Probes <em>— RNNs</em></div>
+      <div class="work-tags"><span>PyTorch</span><span>JAX</span><span>Research</span></div>
+      <div class="work-arrow">↗</div>
+    </a>
+    <a class="work-row" data-prev="audio" href="#">
+      <div class="work-num">W.02</div>
+      <div class="work-title">Self-Supervised Audio <em>— sample-efficient</em></div>
+      <div class="work-tags"><span>Contrastive</span><span>Audio</span></div>
+      <div class="work-arrow">↗</div>
+    </a>
+    <a class="work-row" data-prev="tiny" href="#">
+      <div class="work-num">W.03</div>
+      <div class="work-title">Tiny RNN Playground <em>— teach by playing</em></div>
+      <div class="work-tags"><span>Jupyter</span><span>Teaching</span></div>
+      <div class="work-arrow">↗</div>
+    </a>
+    <a class="work-row" data-prev="site" href="https://github.com/sreekarchigurupati/EarthBug.github.io" target="_blank" rel="noopener">
+      <div class="work-num">W.04</div>
+      <div class="work-title">sreekar.ch <em>— this site, hand-rolled</em></div>
+      <div class="work-tags"><span>Jekyll</span><span>WebGL</span><span>JS</span></div>
+      <div class="work-arrow">↗</div>
+    </a>
+    <a class="work-row" data-prev="ndt" href="#">
+      <div class="work-num">W.05</div>
+      <div class="work-title">Neural Data Toolkit <em>— lab-frustration ware</em></div>
+      <div class="work-tags"><span>Python</span><span>NumPy</span><span>Tooling</span></div>
+      <div class="work-arrow">↗</div>
+    </a>
+    <a class="work-row" data-prev="prc" href="#">
+      <div class="work-num">W.06</div>
+      <div class="work-title">Paper Reading Club <em>— one a week</em></div>
+      <div class="work-tags"><span>Notes</span><span>Writing</span></div>
+      <div class="work-arrow">↗</div>
+    </a>
+  </div>
 
-    <article class="project-card reveal">
-      <div class="project-head">
-        <h3>Self-Supervised Audio</h3>
-        <span class="project-year">2025</span>
-      </div>
-      <p>Small-scale contrastive pretraining on environmental audio, with a focus on sample efficiency and interpretable features.</p>
-      <div class="project-tags">
-        <span>PyTorch</span><span>Contrastive</span><span>Audio</span>
-      </div>
-      <div class="project-links">
-        <a href="#">Write-up</a>
-        <a href="#">Code</a>
-      </div>
-    </article>
-
-    <article class="project-card reveal">
-      <div class="project-head">
-        <h3>Tiny RNN Playground</h3>
-        <span class="project-year">2024</span>
-      </div>
-      <p>An interactive notebook for training two-neuron RNNs on toy cognitive tasks and visualising their fixed-point structure.</p>
-      <div class="project-tags">
-        <span>Python</span><span>Jupyter</span><span>Teaching</span>
-      </div>
-      <div class="project-links">
-        <a href="#">Notebook</a>
-      </div>
-    </article>
-
-    <article class="project-card reveal">
-      <div class="project-head">
-        <h3>sreekar.ch</h3>
-        <span class="project-year">2024 —</span>
-      </div>
-      <p>This website. Jekyll, hand-written WebGL neural-network background, scroll reveals, and a ⌘K command palette.</p>
-      <div class="project-tags">
-        <span>Jekyll</span><span>Three.js</span><span>Vanilla JS</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/sreekarchigurupati/EarthBug.github.io" target="_blank" rel="noopener">Source</a>
-      </div>
-    </article>
-
-    <article class="project-card reveal">
-      <div class="project-head">
-        <h3>Neural Data Toolkit</h3>
-        <span class="project-year">2024</span>
-      </div>
-      <p>A small collection of dataloaders and preprocessing utilities for common neural recording formats — born out of lab frustration.</p>
-      <div class="project-tags">
-        <span>Python</span><span>NumPy</span><span>Tooling</span>
-      </div>
-      <div class="project-links">
-        <a href="#">Code</a>
-      </div>
-    </article>
-
-    <article class="project-card reveal">
-      <div class="project-head">
-        <h3>Paper Reading Club</h3>
-        <span class="project-year">2023 —</span>
-      </div>
-      <p>Notes and summaries from a weekly reading group on neuroscience-meets-ML — one paper a week, lovingly annotated.</p>
-      <div class="project-tags">
-        <span>Writing</span><span>Notes</span>
-      </div>
-      <div class="project-links">
-        <a href="#">Notes</a>
-      </div>
-    </article>
-
+  <div class="work-preview" id="preview" aria-hidden="true">
+    <div class="slot active" data-id="rg">
+      <span class="label">Representation</span>
+      <span class="ttl">geometry probes</span>
+    </div>
+    <div class="slot" data-id="audio">
+      <span class="label">SSL Audio</span>
+      <span class="ttl">listening, less.</span>
+    </div>
+    <div class="slot" data-id="tiny">
+      <span class="label">Two neurons</span>
+      <span class="ttl">a playground.</span>
+    </div>
+    <div class="slot" data-id="site">
+      <span class="label">sreekar.ch</span>
+      <span class="ttl">this very site.</span>
+    </div>
+    <div class="slot" data-id="ndt">
+      <span class="label">Toolkit</span>
+      <span class="ttl">borne of pain.</span>
+    </div>
+    <div class="slot" data-id="prc">
+      <span class="label">Reading club</span>
+      <span class="ttl">slowly, weekly.</span>
+    </div>
   </div>
 </section>
 
 <section class="about-section reveal">
-  <h2>Live from GitHub</h2>
+  <h2>Live from <em>GitHub</em></h2>
   <p class="about-subtle">Most recently updated public repositories — fetched when the page loads.</p>
   <div id="github-repos" class="gh-grid" data-user="sreekarchigurupati" data-limit="6"></div>
 </section>

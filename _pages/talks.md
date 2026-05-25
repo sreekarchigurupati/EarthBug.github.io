@@ -6,11 +6,12 @@ hide_title: true
 ---
 
 <section class="about-hero reveal">
-  <h1 class="about-name">Talks</h1>
+  <h1 class="about-name"><em>Talks.</em></h1>
   <p class="about-role">Selected presentations, lectures, and reading-group sessions</p>
 </section>
 
-<div class="talks-list reveal">
+<section class="section reveal">
+<div class="talks-list">
 {% assign talks_by_year = site.talks | sort: "date" | reverse | group_by_exp: "talk", "talk.date | date: '%Y'" %}
 {% for year in talks_by_year %}
   <h2 class="talks-year">{{ year.name }}</h2>
@@ -35,3 +36,4 @@ hide_title: true
   {% endfor %}
 {% endfor %}
 </div>
+</section>

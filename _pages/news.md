@@ -6,7 +6,7 @@ hide_title: true
 ---
 
 <section class="about-hero reveal">
-  <h1 class="about-name">News</h1>
+  <h1 class="about-name"><em>News.</em></h1>
   <p class="about-role">Updates from the lab, the desk, and the inbox</p>
 </section>
 
