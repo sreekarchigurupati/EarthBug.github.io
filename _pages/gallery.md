@@ -7,7 +7,7 @@ hide_title: true
 
 <section class="about-hero reveal">
   <h1 class="about-name"><em>Gallery.</em></h1>
-  <p class="about-role">Random photos I clicked</p>
+  <p class="about-role">Important moments, mostly from the lab and the field</p>
 </section>
 
 <section class="section reveal">

@@ -7,79 +7,84 @@ hide_title: true
 
 <section class="about-hero reveal">
   <h1 class="about-name">Selected work, <em>in progress.</em></h1>
-  <p class="about-role">Research, side builds, and experiments — 2023 to present</p>
+  <p class="about-role">Research, open-source work, and side builds</p>
 </section>
 
 <section class="section reveal">
   <div class="section-head section-head--stacked">
     <div class="num">/ 02</div>
     <h2>Index of <em>projects.</em></h2>
-    <div class="meta">06 Entries · Hover to preview</div>
+    <div class="meta">07 Entries · Hover to preview</div>
   </div>
 
   <div class="work-list" id="workList">
-    <a class="work-row" data-prev="rg" href="#">
+    <a class="work-row" data-prev="sucor" href="https://arxiv.org/abs/2603.16758" target="_blank" rel="noopener">
       <div class="work-num">W.01</div>
-      <div class="work-title">Representation Geometry Probes <em>— RNNs</em></div>
-      <div class="work-tags"><span>PyTorch</span><span>JAX</span><span>Research</span></div>
+      <div class="work-title">SuCor <em>— distortion correction, fast</em></div>
+      <div class="work-tags"><span>Optimal Transport</span><span>MRI</span><span>Python</span></div>
       <div class="work-arrow">↗</div>
     </a>
-    <a class="work-row" data-prev="audio" href="#">
+    <a class="work-row" data-prev="brainmri" href="#">
       <div class="work-num">W.02</div>
-      <div class="work-title">Self-Supervised Audio <em>— sample-efficient</em></div>
-      <div class="work-tags"><span>Contrastive</span><span>Audio</span></div>
-      <div class="work-arrow">↗</div>
+      <div class="work-title">Generalizable Brain MRI <em>— one model, many tasks</em></div>
+      <div class="work-tags"><span>PyTorch</span><span>Foundation Models</span><span>MRI</span></div>
     </a>
-    <a class="work-row" data-prev="tiny" href="#">
+    <a class="work-row" data-prev="forget" href="#">
       <div class="work-num">W.03</div>
-      <div class="work-title">Tiny RNN Playground <em>— teach by playing</em></div>
-      <div class="work-tags"><span>Jupyter</span><span>Teaching</span></div>
-      <div class="work-arrow">↗</div>
+      <div class="work-title">Catastrophic Forgetting in LLMs <em>— replay &amp; LoRA</em></div>
+      <div class="work-tags"><span>LLaMA</span><span>LoRA</span><span>Continual Learning</span></div>
     </a>
-    <a class="work-row" data-prev="site" href="https://github.com/sreekarchigurupati/EarthBug.github.io" target="_blank" rel="noopener">
+    <a class="work-row" data-prev="dipy" href="https://github.com/dipy/dipy" target="_blank" rel="noopener">
       <div class="work-num">W.04</div>
-      <div class="work-title">sreekar.ch <em>— this site, hand-rolled</em></div>
-      <div class="work-tags"><span>Jekyll</span><span>WebGL</span><span>JS</span></div>
+      <div class="work-title">DIPY <em>— diffusion imaging in Python</em></div>
+      <div class="work-tags"><span>Python</span><span>FURY</span><span>Open Source</span></div>
       <div class="work-arrow">↗</div>
     </a>
-    <a class="work-row" data-prev="ndt" href="#">
+    <a class="work-row" data-prev="xmetal" href="#">
       <div class="work-num">W.05</div>
-      <div class="work-title">Neural Data Toolkit <em>— lab-frustration ware</em></div>
-      <div class="work-tags"><span>Python</span><span>NumPy</span><span>Tooling</span></div>
-      <div class="work-arrow">↗</div>
+      <div class="work-title">XMetal <em>— an X server for macOS</em></div>
+      <div class="work-tags"><span>Rust</span><span>Metal</span><span>GLX</span></div>
     </a>
-    <a class="work-row" data-prev="prc" href="#">
+    <a class="work-row" data-prev="track" href="#">
       <div class="work-num">W.06</div>
-      <div class="work-title">Paper Reading Club <em>— one a week</em></div>
-      <div class="work-tags"><span>Notes</span><span>Writing</span></div>
-      <div class="work-arrow">↗</div>
+      <div class="work-title">Adaptive Object Tracking <em>— for the farm</em></div>
+      <div class="work-tags"><span>OpenCV</span><span>SVM</span><span>C++</span></div>
+    </a>
+    <a class="work-row" data-prev="raga" href="#">
+      <div class="work-num">W.07</div>
+      <div class="work-title">Raga Detection <em>— Carnatic music IR</em></div>
+      <div class="work-tags"><span>Audio</span><span>MIR</span><span>SVM</span></div>
     </a>
   </div>
 
   <div class="work-preview" id="preview" aria-hidden="true">
-    <div class="slot active" data-id="rg">
-      <span class="label">Representation</span>
-      <span class="ttl">geometry probes</span>
+    <div class="slot active" data-id="sucor">
+      <span class="label">SuCor</span>
+      <span class="ttl">12 seconds, not 55 minutes.</span>
     </div>
-    <div class="slot" data-id="audio">
-      <span class="label">SSL Audio</span>
-      <span class="ttl">listening, less.</span>
+    <div class="slot" data-id="brainmri">
+      <span class="label">Brain MRI</span>
+      <span class="ttl">one model, many tasks.</span>
     </div>
-    <div class="slot" data-id="tiny">
-      <span class="label">Two neurons</span>
-      <span class="ttl">a playground.</span>
+    <div class="slot" data-id="forget">
+      <span class="label">Forget less</span>
+      <span class="ttl">teaching LLMs to remember.</span>
     </div>
-    <div class="slot" data-id="site">
-      <span class="label">sreekar.ch</span>
-      <span class="ttl">this very site.</span>
+    <div class="slot" data-id="dipy">
+      <span class="label">DIPY</span>
+      <span class="ttl">open-source dMRI.</span>
     </div>
-    <div class="slot" data-id="ndt">
-      <span class="label">Toolkit</span>
-      <span class="ttl">borne of pain.</span>
+    <div class="slot" data-id="xmetal">
+      <span class="label">XMetal</span>
+      <span class="ttl">X11, rendered on Metal.</span>
     </div>
-    <div class="slot" data-id="prc">
-      <span class="label">Reading club</span>
-      <span class="ttl">slowly, weekly.</span>
+    <div class="slot" data-id="track">
+      <span class="label">Tracking</span>
+      <span class="ttl">76% out in the field.</span>
+    </div>
+    <div class="slot" data-id="raga">
+      <span class="label">Raga ID</span>
+      <span class="ttl">microtones, classified.</span>
     </div>
   </div>
 </section>

@@ -735,7 +735,13 @@ body { counter-reset: about-sec; }
   transition: padding 0.35s, background 0.35s;
 }
 .about-section > .pub-item:last-of-type { border-bottom: 1px solid var(--line); }
+/* the year h2 already has a bottom border — drop the first item's top border
+   so the two don't read as a doubled line */
+.about-section > .pub-item:first-of-type { border-top: 0; }
 .pub-item:hover { padding-left: 12px; background: var(--bg-2); }
+
+/* tighten the vertical gap between year sections on the publications list */
+.about-section:has(> .pub-item) { padding-bottom: 32px; }
 
 .pub-item .pub-title {
   font-family: var(--serif); font-weight: 400; font-style: italic;
@@ -1093,16 +1099,25 @@ body { counter-reset: about-sec; }
 }
 .image-gallery .gallery-caption,
 .image-gallery li a span {
-  display: block;
+  display: flex; align-items: baseline; gap: 10px;
   margin-top: 10px;
   font-family: var(--mono); font-size: 11px;
   letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--fg-mute);
-  text-overflow: ellipsis; overflow: hidden; white-space: nowrap;
   transition: color 0.3s;
+}
+.image-gallery .gallery-title {
+  text-overflow: ellipsis; overflow: hidden; white-space: nowrap;
+  flex: 1 1 auto; min-width: 0;
+}
+.image-gallery .gallery-date {
+  flex: 0 0 auto;
+  color: var(--fg-mute); opacity: 0.7;
+  letter-spacing: 0.06em;
 }
 .image-gallery a:hover .gallery-caption,
 .image-gallery a:hover span { color: var(--accent); }
+.image-gallery a:hover .gallery-date { color: var(--accent); opacity: 1; }
 
 @media (max-width: 720px) {
   .image-gallery { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }

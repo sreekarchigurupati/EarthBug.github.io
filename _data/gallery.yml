@@ -1,0 +1,13 @@
+# Per-photo metadata for the gallery.
+# `file` must match the image's filename in assets/album (including extension).
+# `date` is shown under the photo; `caption` is optional (falls back to the
+# filename with dashes/underscores replaced by spaces).
+- file: Halloween 2022.jpeg
+  date: 2022-10-31
+  caption: Halloween
+- file: Brain dissection 2022.jpg
+  date: 2022-12-09
+  caption: Brain dissection
+- file: Bloomington Residents Academy 2022.JPG
+  date: 2022-10-31
+  caption: Bloomington Residents Academy

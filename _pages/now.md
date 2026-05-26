@@ -19,16 +19,16 @@ hide_title: true
 
   <div class="now-block">
     <div class="reveal">
-      <p>Deep in a project on <strong>representation geometry in recurrent networks</strong> — trying to pin down what structure task-trained RNNs learn, and whether it tells us anything useful about generalisation.</p>
-      <p>On the side, <strong>TA'ing a graduate ML course</strong>, writing a few short notes, and slowly building this site into a place I actually enjoy returning to.</p>
-      <p>Reading a lot about self-supervised learning, interpretability, and how neuroscience can sharpen the questions we ask of ML systems.</p>
+      <p>Deep in a project on <strong>language models for tractography</strong> — trying to guide models to select brain fibers based on natural language input.</p>
+      <p>On the side, <strong>TA'ing a graduate medical imaging course</strong>, writing a few short notes, and slowly building this site into a place I actually enjoy returning to.</p>
+      <p>Starting an internship this summer at a stealth AI startup trying to develop alternatives to <strong>LLMs based on neuroscientific principles.</strong></p>
     </div>
     <aside class="now-aside reveal">
-      <div class="row"><span class="k">Reading</span><span class="v">Hardt &amp; Recht, ch. 6</span></div>
-      <div class="row"><span class="k">Listening</span><span class="v">Anoushka Shankar — Forever&hellip;</span></div>
-      <div class="row"><span class="k">Training</span><span class="v">tiny-rnn-v3 / 12k steps</span></div>
+      <div class="row"><span class="k">Reading</span><span class="v">Wendy Doniger - The Hindus: An Alternative History</span></div>
+      <div class="row"><span class="k">Listening</span><span class="v">A.R Rahman - Kannae Kanmaniye&hellip;</span></div>
+      <div class="row"><span class="k">Training</span><span class="v">Qwen2.5-7B-Instruct / push-pull-legs routine</span></div>
       <div class="row"><span class="k">Avoiding</span><span class="v">Twitter, mostly</span></div>
-      <div class="row"><span class="k">Coffee</span><span class="v">filter, single, no sugar</span></div>
+      <div class="row"><span class="k">Coffee</span><span class="v">The Brothers Karamelzov latte</span></div>
       <div class="row"><span class="k">Last commit</span><span class="v" id="lastCommit">2 hrs ago</span></div>
     </aside>
   </div>
