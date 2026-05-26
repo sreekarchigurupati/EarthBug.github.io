@@ -13,10 +13,26 @@ include:
   - _pages
 
 nav_pages:
-  - about: "about"
+  - now: "now"
+  - projects: "projects"
+  - publications: "publications"
+  - news: "news"
   - blog: "archive"
   - talks: "talks"
   - gallery: "gallery"
+
+# Social / SEO (read by jekyll-seo-tag)
+image: /assets/cover.jpg
+twitter:
+  username: sreekarchigurupati
+  card: summary_large_image
+social:
+  name: Sreekar Chigurupati
+  links:
+    - https://github.com/sreekarchigurupati
+    - https://www.linkedin.com/in/sreekar-chigurupati
+    - https://scholar.google.com/citations?user=BXjw99IAAAAJ
+    - https://instagram.com/sreekarchigurupati
 
 destination: docs/
 

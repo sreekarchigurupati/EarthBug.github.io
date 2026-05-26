@@ -1,65 +1,71 @@
 ---
 layout: default
 pagination:
-enabled: true
+  enabled: true
 ---
 
-<div class="home">
-  {%- if page.title -%}
-  <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+<section class="home-hero" id="top">
+  <p class="home-eyebrow">
+    <span class="dot" aria-hidden="true">●</span>
+    PhD — Neuroscience × Artificial Intelligence
+  </p>
 
-  {{ content }}
+  <h1 class="home-title">
+    <span class="line"><span style="--d:.05s">Closing the loop</span></span>
+    <span class="line"><span style="--d:.16s">between <em>brains &amp; machines.</em></span></span>
+  </h1>
 
-  {%- if site.posts.size > 0 -%}
-  <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-  <ul class="post-list">
+  <div class="home-intro reveal">
+    <p class="home-lede">
+        My work spans two sides of artificial intelligence — using AI to extract insight from <em>neuroimaging</em> data, and
+        building <em>AI &amp; learning models</em> on the principles of neuroscience.
+    </p>
+    <dl class="home-facts">
+      <div class="fact">
+        <dt>Based in</dt>
+        <dd>Bloomington, Indiana</dd>
+      </div>
+      <div class="fact">
+        <dt>Currently</dt>
+        <dd><a href="{{ "/now/" | relative_url }}">Distortion correction in neuroimaging</a></dd>
+      </div>
+      <div class="fact">
+        <dt>Email</dt>
+        <dd><a href="mailto:chigurupatisreekar@gmail.com">chigurupatisreekar@gmail.com</a></dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+{{ content }}
+
+{%- if site.posts.size > 0 -%}
+<section class="home-writing">
+  <div class="home-head">
+    <h2>Recent <em>writing</em></h2>
+    <a class="home-head-link" href="{{ "/archive/" | relative_url }}">All entries →</a>
+  </div>
+  <ul class="entry-list">
+    {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
     {%- for post in paginator.posts -%}
-    <li>
-      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-      <span class="post-meta">{{ post.date | date: date_format }}</span>
-      <h3>
-        <a class="post-link" href="{{ post.url | relative_url }}">
-          {{ post.title | escape }}
-        </a>
-      </h3>
-      {%- if site.show_excerpts -%}
-      {{ post.excerpt }}
-      {%- endif -%}
-      {% if post.tags.size > 0 %}
-      <span>|
-        {% for tag in post.tags %}
-        {% capture tag_name %}{{ tag }}{% endcapture %}
-        <a href="/tag/{{ tag_name }}"><code><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
-        {% endfor %} |
-      </span>
-      {%- endif -%}
+    <li class="reveal">
+      <a href="{{ post.url | relative_url }}">
+        <span class="entry-date">{{ post.date | date: date_format }}</span>
+        <span class="entry-title">{{ post.title | escape }}</span>
+        <span class="entry-arrow" aria-hidden="true">→</span>
+      </a>
     </li>
     {%- endfor -%}
   </ul>
+</section>
+{%- endif -%}
 
-  <!-- Pagination links -->
-  <div class="pagination">
-    {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}" class="previous">
-      Previous
-    </a>
-    {% else %}
-    <span class="previous">Previous</span>
-    {% endif %}
-    <span class="page_number ">
-      Page: {{ paginator.page }} of {{ paginator.total_pages }}
-    </span>
-    {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
-    {% else %}
-    <span class="next ">Next</span>
-    {% endif %}
-  </div>
-
-  <p class="feed-subscribe"><svg class="svg-icon orange">
-      <use xlink:href="{{ '/assets/minima-social-icons.svg#rss' | relative_url }}"></use>
-    </svg><a href="{{ "/feed.xml" | relative_url }}">Subscribe</a></p>
-  {%- endif -%}
-
-</div>
+<section class="home-contact" id="contact">
+  <h2>Let's <em>talk.</em></h2>
+  <a class="contact-mail" href="mailto:chigurupatisreekar@gmail.com">chigurupatisreekar@gmail.com&nbsp;→</a>
+  <nav class="contact-links">
+    <a href="https://github.com/sreekarchigurupati">GitHub ↗</a>
+    <a href="https://www.linkedin.com/in/sreekar-chigurupati">LinkedIn ↗</a>
+    <a href="{{ "/cv/" | relative_url }}">Curriculum Vitae →</a>
+  </nav>
+</section>
