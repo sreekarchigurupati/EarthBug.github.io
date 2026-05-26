@@ -1,8 +1,6 @@
 
 language: ruby
 cache: bundler
-python:
-  - 3.9
 rvm:
   - 3.1.0
 script: bundle exec rake test
@@ -12,5 +10,3 @@ env:
 before_install:
   - gem update --system
   - gem install bundler
-  - sudo apt-get install -y python3
-  - python3 taggenerator.py

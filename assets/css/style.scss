@@ -378,6 +378,106 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 32px 0; }
   .entry-arrow { grid-row: 1 / span 2; align-self: center; }
 }
 
+/* ---------- BLOG INDEX ---------- */
+/* Selectors are scoped under .blog so they out-specify the .post-content prose
+   rules (links, lists) the page layout wraps this include in. */
+.blog { margin: 0; }
+
+.blog-filters {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin: 0 0 30px; padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+.blog .filter-chip {
+  display: inline-flex; align-items: baseline; gap: 7px;
+  font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--fg-dim);
+  padding: 8px 15px; border: 1px solid var(--line); border-radius: 999px;
+  background: transparent;
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.blog .filter-chip:hover { color: var(--fg); border-color: var(--fg-mute); }
+.blog .filter-chip.is-active {
+  color: var(--bg); background: var(--accent); border-color: var(--accent);
+}
+.filter-count { font-size: 10px; opacity: 0.55; }
+.blog .filter-chip.is-active .filter-count { opacity: 0.85; }
+
+.blog .blog-list { list-style: none; margin: 0; padding: 0; }
+.blog-item { border-bottom: 1px solid var(--line); padding-bottom: 28px; }
+.blog-item[hidden] { display: none; }
+
+.blog .blog-link {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr) auto;
+  gap: 28px; align-items: baseline;
+  padding: 30px 0 0; border-bottom: 0; color: var(--fg);
+  transition: padding 0.35s var(--ease-out);
+}
+.blog .blog-link:hover { padding-left: 14px; }
+
+.blog-date {
+  display: flex; flex-direction: column; gap: 4px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.blog-year { color: var(--fg-dim); }
+
+.blog-body { min-width: 0; }
+.blog-title {
+  display: block;
+  font-family: var(--sans); font-weight: 400;
+  font-size: clamp(20px, 2.3vw, 30px);
+  letter-spacing: -0.02em; line-height: 1.15;
+  color: var(--fg); transition: color 0.3s;
+}
+.blog-desc {
+  display: block; margin-top: 9px; max-width: 62ch;
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(15px, 1.4vw, 18px);
+  color: var(--fg-dim); line-height: 1.45;
+}
+.blog-arrow {
+  font-family: var(--serif); font-style: italic; font-size: 24px;
+  color: var(--fg-mute);
+  transition: transform 0.35s var(--ease-out), color 0.3s;
+}
+.blog .blog-link:hover .blog-title { color: var(--accent); }
+.blog .blog-link:hover .blog-arrow { color: var(--accent); transform: translateX(8px); }
+
+.blog-meta {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 16px 0 0 158px; /* line up under the title (130px date col + 28px gap) */
+}
+.blog .chip {
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 999px;
+  border: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft);
+  color: var(--fg-mute);
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.blog .chip-cat {
+  color: var(--accent);
+  border-color: var(--accent-soft); background: var(--accent-soft);
+}
+.blog a.chip-tag:hover { color: var(--fg); border-color: var(--fg-mute); }
+
+.blog-empty {
+  font-family: var(--serif); font-style: italic;
+  color: var(--fg-mute); padding: 36px 0; margin: 0;
+}
+
+@media (max-width: 640px) {
+  .blog .blog-link { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; }
+  .blog-date { flex-direction: row; gap: 8px; grid-column: 1; grid-row: 1; }
+  .blog-body { grid-column: 1; grid-row: 2; }
+  .blog-arrow { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+  .blog-meta { margin-left: 0; }
+}
+
 /* ---------- HOME CONTACT ---------- */
 .home-contact {
   max-width: var(--maxw); margin: 0 auto;

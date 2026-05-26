@@ -4,7 +4,7 @@
 
 Based on the Minima Jekyll theme
 
-Execute <code>execute-before-commit.sh</code> for tag generation.
+Tag pages are generated automatically at build time by `jekyll-archives` (configured in `_config.yml`). Just run `bundle exec jekyll build`.
 
 ## Authoring notes
 
