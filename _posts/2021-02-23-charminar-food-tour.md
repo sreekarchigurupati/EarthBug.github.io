@@ -2,6 +2,7 @@
 layout: post
 title: "Charminar - A culinary walk"
 author: "Sreekar Chigurupati"
+description: "An eclectic walk through the food around Hyderabad's Charminar."
 categories: travel food
 tags: food-tour charminar hyderabad heritage
 ---

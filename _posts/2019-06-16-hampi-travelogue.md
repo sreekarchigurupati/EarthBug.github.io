@@ -2,6 +2,7 @@
 layout: post
 title: "Travelogue - Hampi"
 author: "Sreekar Chigurupati"
+description: "A two-day travel guide to the boulder-strewn ruins of Hampi."
 categories: travel
 tags: travelogue hampi
 ---

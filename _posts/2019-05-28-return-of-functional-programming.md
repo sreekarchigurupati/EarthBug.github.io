@@ -2,6 +2,7 @@
 layout: post
 title: "The return of functional programming"
 author: "Sreekar Chigurupati"
+description: "As Moore's Law fades and cores multiply, why an old paradigm is making a comeback."
 categories: programming
 tags: functional-programming moore's-law concurrency parallelism
 ---

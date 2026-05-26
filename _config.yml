@@ -90,5 +90,14 @@ plugins:
  - jekyll-archives
  - jekyll-sitemap
 
+# Auto-generate a page per tag at build time (replaces the old taggenerator.py)
+jekyll-archives:
+  enabled:
+    - tags
+  layouts:
+    tag: tagpage
+  permalinks:
+    tag: "/tag/:name/"
+
 sass:
    style: compressed
