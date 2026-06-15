@@ -18,11 +18,10 @@ hide_title: true
   </div>
 
   <div class="work-list" id="workList">
-    <a class="work-row" data-prev="sucor" href="https://arxiv.org/abs/2603.16758" target="_blank" rel="noopener">
+    <a class="work-row" data-prev="sucor" href="/sucor">
       <div class="work-num">W.01</div>
       <div class="work-title">SuCor <em>— distortion correction, fast</em></div>
       <div class="work-tags"><span>Optimal Transport</span><span>MRI</span><span>Python</span></div>
-      <div class="work-arrow">↗</div>
     </a>
     <a class="work-row" data-prev="brainmri" href="#">
       <div class="work-num">W.02</div>
