@@ -1,0 +1,109 @@
+---
+layout: default
+permalink: /sucor/
+title: SuCor
+---
+<link rel="stylesheet" href="/assets/sucor/sucor.css">
+<script>window.SUCOR = {{ site.data.sucor | jsonify }};</script>
+
+{% assign d = site.data.sucor %}
+<div class="sucor">
+
+  <!-- HERO -->
+  <section class="su-hero reveal">
+    <div class="su-meta">
+      <span><i></i>in active development</span><span>optimal transport</span>
+      <span>dMRI · fMRI</span><span>opposite-PE EPI</span>
+    </div>
+    <div class="su-kick">Susceptibility-distortion correction</div>
+    <h1>Undistort EPI <span class="su-grad">in seconds</span><br>— with a field that looks like physics.</h1>
+    <p class="su-lede">SuCor turns an opposite-PE b0 pair into one distortion-free image and a B0 fieldmap that's sharp at air–tissue edges and smooth in tissue — using closed-form optimal transport instead of slow iterative registration.</p>
+    <div class="su-cta">
+      <a class="su-btn su-btn-primary" href="mailto:srchig@iu.edu?subject=SuCor%20early%20access">Request early access</a>
+      <a class="su-btn su-btn-ghost" href="#viewer">See it work ↓</a>
+      <span class="su-sub">private beta · Indiana University</span>
+    </div>
+  </section>
+
+  <!-- VIEWER -->
+  <section class="su-band reveal" id="viewer">
+    <div class="su-head"><div class="su-kick">Interactive · real data</div>
+      <h2>Drag to undistort a real brain.</h2>
+      <p>Wipe between the distorted input and the SuCor-corrected output, scrub slices, or switch to the estimated field.</p></div>
+    <div id="su-viewer" class="su-viewer" data-loading="1">
+      <noscript><p class="su-note">Enable JavaScript for the interactive viewer.</p></noscript>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section class="su-band reveal" id="method">
+    <div class="su-head"><div class="su-kick">How it works</div>
+      <h2>One field, five stages, no blow-ups.</h2></div>
+    <div class="su-steps">
+      <div class="su-step"><div class="n">01</div><h4>Optimal transport</h4><p>Closed-form 1-D OT matches the LR/RL intensity profiles to a midpoint.</p></div>
+      <div class="su-step"><div class="n">02</div><h4>Low-rank inpaint</h4><p>Soft-Impute fills dropout columns from a rank-6 field subspace.</p></div>
+      <div class="su-step"><div class="n">03</div><h4>Charbonnier</h4><p>Edge-preserving regularisation: smooth in tissue, sharp at edges.</p></div>
+      <div class="su-step"><div class="n">04</div><h4>Fluid refine</h4><p>Edge-aware fluid descent polishes the match without roughening.</p></div>
+      <div class="su-step"><div class="n">05</div><h4>CDF pullback</h4><p>Mass-conserving warp applied to the full 4-D series.</p></div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="su-band reveal" id="proof">
+    <div class="su-head"><div class="su-kick">Ground-truth validation · koma simulation</div>
+      <h2>It recovers the true brain.</h2>
+      <p>On a physics simulation where the undistorted brain is known exactly, SuCor turns the distorted input back into the ground truth.</p></div>
+    <div class="su-g3">
+      <figure><img loading="lazy" src="{{ d.proof.distorted }}" alt="distorted input"><figcaption>distorted</figcaption></figure>
+      <figure><img loading="lazy" src="{{ d.proof.corrected }}" alt="SuCor corrected"><figcaption class="hi">SuCor corrected</figcaption></figure>
+      <figure><img loading="lazy" src="{{ d.proof.gt }}" alt="ground truth"><figcaption>ground truth</figcaption></figure>
+    </div>
+    <div class="su-chips">
+      <span class="su-chip">corrected vs truth: r = {{ d.proof.img_r }}</span>
+      <span class="su-chip">NRMSE {{ d.proof.nrmse_distorted }} → {{ d.proof.nrmse_corrected }} ({{ d.proof.improvement_pct }}% lower)</span>
+    </div>
+  </section>
+
+  <!-- FMRI VALIDATION -->
+  <section class="su-band reveal" id="fmri-val">
+    <div class="su-head"><div class="su-kick">fMRI · in-vivo</div>
+      <h2>Matches a spin-echo reference.</h2>
+      <p>Corrected resting BOLD lines up with a separately-acquired, distortion-minimal spin-echo EPI.</p></div>
+    <figure class="su-wide"><img loading="lazy" src="{{ d.fmri_validation.image }}" alt="corrected BOLD vs spin-echo reference"></figure>
+  </section>
+
+  <!-- VS TOPUP -->
+  <section class="su-band reveal" id="vs">
+    <div class="su-head"><div class="su-kick">Head-to-head · same data</div>
+      <h2>On par with FSL topup — faster.</h2></div>
+    <div class="su-g2">
+      <figure><img loading="lazy" src="{{ d.vs_topup.sucor_corrected }}" alt="SuCor corrected"><figcaption class="hi">SuCor — corrected</figcaption></figure>
+      <figure><img loading="lazy" src="{{ d.vs_topup.topup_corrected }}" alt="topup corrected"><figcaption>FSL topup — corrected</figcaption></figure>
+      <figure><img loading="lazy" src="{{ d.vs_topup.sucor_field }}" alt="SuCor field"><figcaption class="hi">SuCor — fieldmap</figcaption></figure>
+      <figure><img loading="lazy" src="{{ d.vs_topup.topup_field }}" alt="topup field"><figcaption>FSL topup — fieldmap</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- SPEED -->
+  <section class="su-band reveal" id="speed">
+    <div class="su-head"><div class="su-kick">Runtime · single b0 pair</div>
+      <h2>{{ d.timings.speedup }}× faster than topup.</h2>
+      <p>Wall-clock to estimate the field on identical input.</p></div>
+    <div class="su-bars">
+      <div class="su-bar"><span>SuCor</span><div class="track"><div class="fill pos" style="width:6%">{{ d.timings.sucor_s }}s</div></div></div>
+      <div class="su-bar"><span>FSL topup</span><div class="track"><div class="fill" style="width:96%">{{ d.timings.topup_s }}s</div></div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="su-band reveal" id="contact">
+    <div class="su-contact">
+      <div class="su-kick">Private beta</div>
+      <h2>Want to try SuCor on your data?</h2>
+      <p>SuCor is in active development at Indiana University. For early access or to collaborate, reach out.</p>
+      <a class="su-btn su-btn-primary" href="mailto:srchig@iu.edu?subject=SuCor%20early%20access">srchig@iu.edu</a>
+    </div>
+  </section>
+</div>
+
+<script src="/assets/sucor/viewer.js" defer></script>
