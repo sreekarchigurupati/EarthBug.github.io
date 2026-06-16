@@ -3,10 +3,10 @@
   var data = window.SUCOR;
   if (!root || !data || !data.datasets || !data.datasets.length) return;
 
-  var dsIndex = 0, slice = 0, showField = false, wipe = 50;
+  var dsIndex = 0, slice = 0, showField = false, wipe = 50, vertical = false;
+  var DEFAULT_FRAC = 0.28;   // inferior slice (near sinuses) shows the distortion
 
   function ds() { return data.datasets[dsIndex]; }
-  function mid(arr) { return Math.floor(arr.length / 2); }
 
   root.removeAttribute('data-loading');
   root.innerHTML =
@@ -44,18 +44,32 @@
   function preload(list) { list.forEach(function (s) { var im = new Image(); im.src = s; }); }
 
   function setupDataset() {
-    var s = ds().slices;
+    var d = ds(), s = d.slices;
+    // Wipe along the phase-encode axis: AP (fMRI) distorts up/down, so wipe
+    // vertically; LR (dMRI) distorts left/right, so wipe horizontally.
+    vertical = /fmri/i.test(d.id || '') || /\b(AP|PA)\b/.test(d.meta || '');
+    stage.classList.toggle('vert', vertical);
+    vhandle.textContent = vertical ? '↕' : '⟷';
+    vhandle.setAttribute('aria-label',
+      vertical ? 'reveal corrected image (drag up/down)' : 'reveal corrected image (drag left/right)');
     sliceInput.max = s.distorted.length - 1;
-    slice = mid(s.distorted);
+    slice = Math.round(DEFAULT_FRAC * (s.distorted.length - 1));
     sliceInput.value = slice;
-    unit.textContent = ds().unit || '';
+    unit.textContent = d.unit || '';
     preload(s.distorted); preload(s.corrected); preload(s.fieldmap);
   }
 
   function setWipe(pct) {
     wipe = Math.max(2, Math.min(98, pct));
-    imgCorr.style.clipPath = 'inset(0 0 0 ' + wipe + '%)';
-    vline.style.left = wipe + '%'; vhandle.style.left = wipe + '%';
+    if (vertical) {
+      imgCorr.style.clipPath = 'inset(' + wipe + '% 0 0 0)';
+      vline.style.left = ''; vline.style.top = wipe + '%';
+      vhandle.style.left = '50%'; vhandle.style.top = wipe + '%';
+    } else {
+      imgCorr.style.clipPath = 'inset(0 0 0 ' + wipe + '%)';
+      vline.style.top = ''; vline.style.left = wipe + '%';
+      vhandle.style.top = '50%'; vhandle.style.left = wipe + '%';
+    }
     vhandle.setAttribute('aria-valuenow', Math.round(wipe));
   }
 
@@ -74,12 +88,16 @@
     imgCorr.style.display = f ? 'none' : 'block';
     vline.style.display = vhandle.style.display = f ? 'none' : 'block';
     cbar.style.visibility = f ? 'visible' : 'hidden';
-    stage.style.cursor = f ? 'default' : 'ew-resize';
+    stage.style.cursor = f ? 'default' : (vertical ? 'ns-resize' : 'ew-resize');
   }
 
   var dragging = false;
   function pctFromEvent(e) {
     var r = stage.getBoundingClientRect();
+    if (vertical) {
+      var y = (e.touches ? e.touches[0].clientY : e.clientY) - r.top;
+      return y / r.height * 100;
+    }
     var x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
     return x / r.width * 100;
   }
@@ -92,8 +110,8 @@
   vhandle.addEventListener('keydown', function (e) {
     if (showField) return;
     var step = e.shiftKey ? 10 : 2;
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { setWipe(wipe - step); e.preventDefault(); }
-    else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { setWipe(wipe + step); e.preventDefault(); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { setWipe(wipe - step); e.preventDefault(); }
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { setWipe(wipe + step); e.preventDefault(); }
     else if (e.key === 'Home') { setWipe(2); e.preventDefault(); }
     else if (e.key === 'End') { setWipe(98); e.preventDefault(); }
   });

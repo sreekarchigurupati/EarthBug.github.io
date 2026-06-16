@@ -66,6 +66,13 @@
 .su-stage .vhandle:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
 .su-stage .badge{ position:absolute; top:12px; font-family:var(--mono); font-size:11px; text-transform:uppercase; padding:3px 9px; border-radius:5px; background:rgba(7,9,13,.6); border:1px solid var(--line); }
 .su-stage .badge.l{ left:12px; color:var(--su-red); } .su-stage .badge.r{ right:12px; color:var(--su-blue); }
+/* vertical wipe (fMRI: AP phase-encode distorts up/down) */
+.su-stage.vert{ cursor:ns-resize; }
+.su-stage.vert .corr{ clip-path:inset(50% 0 0 0); }
+.su-stage.vert .vline{ top:50%; bottom:auto; left:0; right:0; width:auto; height:2px; }
+.su-stage.vert .vhandle{ cursor:ns-resize; }
+.su-stage.vert .badge.l{ left:50%; right:auto; transform:translateX(-50%); }
+.su-stage.vert .badge.r{ left:50%; right:auto; top:auto; bottom:12px; transform:translateX(-50%); }
 .su-controls{ display:flex; gap:18px; align-items:center; flex-wrap:wrap; margin-top:14px; font-family:var(--mono); font-size:12px; color:var(--fg-mute); }
 .su-controls input[type=range]{ accent-color:var(--accent); }
 .su-toggle,.su-ds button{ font-family:var(--mono); font-size:12px; border:1px solid var(--line); background:var(--su-panel); color:var(--fg); padding:7px 12px; border-radius:6px; cursor:pointer; }
