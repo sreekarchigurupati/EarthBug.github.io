@@ -3,8 +3,9 @@
   var data = window.SUCOR;
   if (!root || !data || !data.datasets || !data.datasets.length) return;
 
-  var dsIndex = 0, slice = 0, showField = false, wipe = 50, vertical = false;
   var DEFAULT_FRAC = 0.28;   // inferior slice (near sinuses) shows the distortion
+  var DEFAULT_WIPE = 72;     // open mostly on the distorted side (the "problem")
+  var dsIndex = 0, slice = 0, showField = false, wipe = DEFAULT_WIPE, vertical = false;
 
   function ds() { return data.datasets[dsIndex]; }
 
@@ -34,7 +35,7 @@
     data.datasets.forEach(function (dd, i) {
       var b = document.createElement('button');
       b.textContent = dd.label; b.className = (i === 0 ? 'on' : '');
-      b.onclick = function () { dsIndex = i; setupDataset(); paint();
+      b.onclick = function () { dsIndex = i; setupDataset(); setWipe(wipe); paint();
         dsWrap.querySelectorAll('button').forEach(function (x) { x.classList.remove('on'); });
         b.classList.add('on'); };
       dsWrap.appendChild(b);
@@ -124,5 +125,5 @@
     paint();
   });
 
-  setupDataset(); setWipe(50); paint();
+  setupDataset(); setWipe(DEFAULT_WIPE); paint();
 })();
