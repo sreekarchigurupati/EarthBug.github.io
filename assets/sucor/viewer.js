@@ -13,11 +13,11 @@
     '<div class="su-ds"></div>' +
     '<div class="su-stage">' +
       '<span class="badge l">distorted</span><span class="badge r">corrected</span>' +
-      '<img class="dist" alt="distorted"><img class="corr" alt="corrected"><img class="fmap" alt="fieldmap" style="display:none">' +
-      '<div class="vline"></div><div class="vhandle">⟷</div>' +
+      '<img class="dist" alt="distorted EPI input"><img class="corr" alt="SuCor-corrected output"><img class="fmap" alt="estimated B0 fieldmap" style="display:none">' +
+      '<div class="vline"></div><div class="vhandle" tabindex="0" role="slider" aria-label="reveal corrected image" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">⟷</div>' +
     '</div>' +
     '<div class="su-controls">' +
-      '<label>slice <input type="range" class="slice" min="0"></label>' +
+      '<label>slice <input type="range" class="slice" min="0" aria-label="slice"></label>' +
       '<button class="su-toggle fmap-btn">B0 field: off</button>' +
       '<span class="su-cbar" style="visibility:hidden">−<span class="strip"></span>+ <span class="unit"></span></span>' +
     '</div>';
@@ -56,10 +56,15 @@
     wipe = Math.max(2, Math.min(98, pct));
     imgCorr.style.clipPath = 'inset(0 0 0 ' + wipe + '%)';
     vline.style.left = wipe + '%'; vhandle.style.left = wipe + '%';
+    vhandle.setAttribute('aria-valuenow', Math.round(wipe));
   }
+
+  function hideOnError(im) { im.onerror = function () { im.style.visibility = 'hidden'; }; }
+  hideOnError(imgDist); hideOnError(imgCorr); hideOnError(imgFmap);
 
   function paint() {
     var s = ds().slices;
+    imgDist.style.visibility = imgCorr.style.visibility = imgFmap.style.visibility = 'visible';
     imgDist.src = s.distorted[slice];
     imgCorr.src = s.corrected[slice];
     imgFmap.src = s.fieldmap[slice];
@@ -84,6 +89,14 @@
   stage.addEventListener('mousedown', down); stage.addEventListener('touchstart', down, {passive:true});
   window.addEventListener('mousemove', move); window.addEventListener('touchmove', move, {passive:false});
   window.addEventListener('mouseup', up); window.addEventListener('touchend', up);
+  vhandle.addEventListener('keydown', function (e) {
+    if (showField) return;
+    var step = e.shiftKey ? 10 : 2;
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { setWipe(wipe - step); e.preventDefault(); }
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { setWipe(wipe + step); e.preventDefault(); }
+    else if (e.key === 'Home') { setWipe(2); e.preventDefault(); }
+    else if (e.key === 'End') { setWipe(98); e.preventDefault(); }
+  });
 
   sliceInput.addEventListener('input', function () { slice = +sliceInput.value; paint(); });
   fmapBtn.addEventListener('click', function () {

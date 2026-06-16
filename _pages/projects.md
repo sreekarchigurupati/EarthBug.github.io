@@ -59,7 +59,7 @@ hide_title: true
   <div class="work-preview" id="preview" aria-hidden="true">
     <div class="slot active" data-id="sucor">
       <span class="label">SuCor</span>
-      <span class="ttl">12 seconds, not 55 minutes.</span>
+      <span class="ttl">25 seconds, not 9 minutes.</span>
     </div>
     <div class="slot" data-id="brainmri">
       <span class="label">Brain MRI</span>
