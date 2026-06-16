@@ -83,7 +83,7 @@
     var x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
     return x / r.width * 100;
   }
-  function down(e) { if (showField) return; dragging = true; setWipe(pctFromEvent(e)); }
+  function down(e) { if (showField) return; if (!e.touches) e.preventDefault(); dragging = true; setWipe(pctFromEvent(e)); }
   function move(e) { if (dragging) { setWipe(pctFromEvent(e)); e.preventDefault(); } }
   function up() { dragging = false; }
   stage.addEventListener('mousedown', down); stage.addEventListener('touchstart', down, {passive:true});
