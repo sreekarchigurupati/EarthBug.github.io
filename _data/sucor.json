@@ -177,10 +177,10 @@
     "distorted": "/assets/sucor/img/proof/distorted.webp",
     "corrected": "/assets/sucor/img/proof/corrected.webp",
     "gt": "/assets/sucor/img/proof/gt.webp",
-    "img_r": 0.963,
-    "nrmse_distorted": 0.595,
-    "nrmse_corrected": 0.272,
-    "improvement_pct": 54,
+    "img_r": 0.994,
+    "nrmse_distorted": 0.356,
+    "nrmse_corrected": 0.111,
+    "improvement_pct": 69,
     "unit": "image"
   },
   "fmri_validation": {
@@ -193,10 +193,10 @@
     "topup_field": "/assets/sucor/img/topup/topup_field.webp"
   },
   "timings": {
-    "sucor_s": 25.1,
+    "sucor_s": 24.9,
     "topup_s": 575.5,
     "eddy_s": null,
-    "speedup": 23.0,
+    "speedup": 23.1,
     "host": "Darwin arm64"
   }
 }
