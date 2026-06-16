@@ -35,16 +35,28 @@ title: SuCor
     </div>
   </section>
 
+  <!-- SPEED -->
+  <section class="su-band reveal" id="speed">
+    <div class="su-head"><div class="su-kick">Runtime · single b0 pair</div>
+      <h2>{{ d.timings.speedup }}× faster than topup.</h2>
+      <p>Wall-clock to estimate the field on identical input.</p></div>
+    <div class="su-bars">
+      <div class="su-bar"><span>SuCor</span><div class="track"><div class="fill pos" style="width:6%">{{ d.timings.sucor_s }}s</div></div></div>
+      <div class="su-bar"><span>FSL topup</span><div class="track"><div class="fill" style="width:96%">{{ d.timings.topup_s }}s</div></div></div>
+    </div>
+  </section>
+
   <!-- METHOD -->
   <section class="su-band reveal" id="method">
     <div class="su-head"><div class="su-kick">How it works</div>
-      <h2>One field, five stages, no blow-ups.</h2></div>
+      <h2>One field, estimated end to end.</h2>
+      <p>SuCor estimates a single B0 displacement field from the opposite-PE pair and applies it to the whole series. A few design principles, without the recipe:</p></div>
     <div class="su-steps">
-      <div class="su-step"><div class="n">01</div><h4>Optimal transport</h4><p>Closed-form 1-D OT matches the LR/RL intensity profiles to a midpoint.</p></div>
-      <div class="su-step"><div class="n">02</div><h4>Low-rank inpaint</h4><p>Soft-Impute fills dropout columns from a rank-6 field subspace.</p></div>
-      <div class="su-step"><div class="n">03</div><h4>Charbonnier</h4><p>Edge-preserving regularisation: smooth in tissue, sharp at edges.</p></div>
-      <div class="su-step"><div class="n">04</div><h4>Fluid refine</h4><p>Edge-aware fluid descent polishes the match without roughening.</p></div>
-      <div class="su-step"><div class="n">05</div><h4>CDF pullback</h4><p>Mass-conserving warp applied to the full 4-D series.</p></div>
+      <div class="su-step"><div class="n">01</div><h4>Direct start</h4><p>A fast, non-iterative first estimate — no slow registration to converge.</p></div>
+      <div class="su-step"><div class="n">02</div><h4>Dropout-robust</h4><p>Stays coherent where signal has piled up or dropped out.</p></div>
+      <div class="su-step"><div class="n">03</div><h4>Physics-like field</h4><p>Smooth within tissue, sharp at air–tissue boundaries.</p></div>
+      <div class="su-step"><div class="n">04</div><h4>Refined</h4><p>A polish pass tightens the fit without roughening the field.</p></div>
+      <div class="su-step"><div class="n">05</div><h4>Signal-conserving</h4><p>Applied across the full 4-D series while preserving total signal.</p></div>
     </div>
   </section>
 
@@ -81,17 +93,6 @@ title: SuCor
       <figure><img loading="lazy" src="{{ d.vs_topup.topup_corrected }}" alt="topup corrected"><figcaption>FSL topup — corrected</figcaption></figure>
       <figure><img loading="lazy" src="{{ d.vs_topup.sucor_field }}" alt="SuCor field"><figcaption class="hi">SuCor — fieldmap</figcaption></figure>
       <figure><img loading="lazy" src="{{ d.vs_topup.topup_field }}" alt="topup field"><figcaption>FSL topup — fieldmap</figcaption></figure>
-    </div>
-  </section>
-
-  <!-- SPEED -->
-  <section class="su-band reveal" id="speed">
-    <div class="su-head"><div class="su-kick">Runtime · single b0 pair</div>
-      <h2>{{ d.timings.speedup }}× faster than topup.</h2>
-      <p>Wall-clock to estimate the field on identical input.</p></div>
-    <div class="su-bars">
-      <div class="su-bar"><span>SuCor</span><div class="track"><div class="fill pos" style="width:6%">{{ d.timings.sucor_s }}s</div></div></div>
-      <div class="su-bar"><span>FSL topup</span><div class="track"><div class="fill" style="width:96%">{{ d.timings.topup_s }}s</div></div></div>
     </div>
   </section>
 
