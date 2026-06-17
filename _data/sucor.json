@@ -185,7 +185,8 @@
   },
   "fmri_validation": {
     "image": "/assets/sucor/img/fmri/ap_pa_collapse.png",
-    "ssd_drop_pct": 77
+    "ssd_drop_pct": 77,
+    "se_rows": "/assets/sucor/img/fmri/se_rows.png"
   },
   "vs_topup": {
     "sucor_corrected": "/assets/sucor/img/topup/sucor_corrected.webp",
