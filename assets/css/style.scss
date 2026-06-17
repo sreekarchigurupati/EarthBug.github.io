@@ -1248,7 +1248,17 @@ body { counter-reset: about-sec; }
 }
 
 @media (max-width: 720px) {
-  .site-header { padding: 14px var(--pad); }
+  /* iOS Safari mis-composites a position:fixed element that also carries
+     mix-blend-mode — the bar detaches and floats over content mid-scroll.
+     On phones, drop the blend and sit on a solid blurred bar always. */
+  .site-header {
+    padding: 14px var(--pad);
+    mix-blend-mode: normal !important;
+    background: oklch(0.16 0.012 75 / 0.85) !important;
+    backdrop-filter: blur(14px) saturate(1.5) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(1.5) !important;
+    border-bottom: 1px solid var(--line-soft);
+  }
   .site-title .st-label { font-size: 10.5px; }
   .tb-clock { display: none; }
   .post { padding-top: 100px; }
@@ -1260,15 +1270,6 @@ body { counter-reset: about-sec; }
     color: var(--fg); cursor: pointer;
   }
   .site-nav .trigger { display: none; }
-
-  /* solidify the header while the menu is open so it stays legible */
-  .site-header:has(#nav-trigger:checked) {
-    mix-blend-mode: normal;
-    background: oklch(0.16 0.012 75 / 0.92) !important;
-    backdrop-filter: blur(14px) saturate(1.5) !important;
-    -webkit-backdrop-filter: blur(14px) saturate(1.5) !important;
-    border-bottom: 1px solid var(--line-soft) !important;
-  }
 
   /* open state — dropdown panel anchored under the hamburger */
   #nav-trigger:checked ~ .trigger {
