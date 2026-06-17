@@ -184,7 +184,8 @@
     "unit": "image"
   },
   "fmri_validation": {
-    "image": "/assets/sucor/img/fmri/qc_vs_se.png"
+    "image": "/assets/sucor/img/fmri/ap_pa_collapse.png",
+    "ssd_drop_pct": 77
   },
   "vs_topup": {
     "sucor_corrected": "/assets/sucor/img/topup/sucor_corrected.webp",

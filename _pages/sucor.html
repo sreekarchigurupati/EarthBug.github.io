@@ -78,10 +78,10 @@ title: SuCor
 
   <!-- FMRI VALIDATION -->
   <section class="su-band reveal" id="fmri-val">
-    <div class="su-head"><div class="su-kick">fMRI · in-vivo</div>
-      <h2>Matches a spin-echo reference.</h2>
-      <p>Corrected resting BOLD lines up with a separately-acquired, distortion-minimal spin-echo EPI.</p></div>
-    <figure class="su-wide"><img loading="lazy" src="{{ d.fmri_validation.image }}" alt="corrected BOLD vs spin-echo reference"></figure>
+    <div class="su-head"><div class="su-kick">fMRI · in-vivo · opposite-PE</div>
+      <h2>The two encodings snap together.</h2>
+      <p>AP and PA spin-echo EPIs distort in <em>opposite</em> directions. A correct field maps both back to the same true geometry — so red (AP) and green (PA) collapse to gray. PE-axis mismatch drops {{ d.fmri_validation.ssd_drop_pct }}%. This is the same consistency FSL topup is scored on, with no external reference or co-registration in the loop.</p></div>
+    <figure class="su-wide"><img loading="lazy" src="{{ d.fmri_validation.image }}" alt="opposite-PE AP/PA spin-echo collapse after SuCor correction"></figure>
   </section>
 
   <!-- VS TOPUP -->
