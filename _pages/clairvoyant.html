@@ -1,0 +1,114 @@
+---
+layout: default
+permalink: /clairvoyant/
+title: Clairvoyant
+description: Monitor and approve your Claude Code sessions from smart glasses. A local relay keeps your credentials on your machine; the glasses just ask for a glance.
+---
+<link rel="stylesheet" href="/assets/clairvoyant/clairvoyant.css">
+
+<div class="clairvoyant">
+
+  <!-- HERO -->
+  <section class="cv-hero reveal">
+    <div>
+      <div class="cv-meta">
+        <span><i></i>in active development</span><span>Android · smart glasses</span>
+        <span>local relay</span><span>LAN-only</span>
+      </div>
+      <div class="cv-kick">Claude Code on your glasses</div>
+      <h1>Approve your agent from <span class="cv-grad">anywhere in the house</span> — Clairvoyant.</h1>
+      <p class="cv-lede">Clairvoyant streams your running Claude Code sessions to camera-equipped smart glasses and lets you approve or deny tool permissions with a glance — while your credentials never leave your machine.</p>
+      <div class="cv-cta">
+        <a class="cv-btn cv-btn-primary" href="#install">Install ↓</a>
+        <a class="cv-btn cv-btn-ghost" href="#how">How it works ↓</a>
+        <span class="cv-sub">open source · APK + npm relay</span>
+      </div>
+    </div>
+    <div class="cv-hud" aria-hidden="true">
+      <div class="cv-hud-top"><span>clairvoyant</span><span class="cv-live"><i></i>session live</span></div>
+      <div class="cv-hud-line dim">~/projects/api · claude</div>
+      <div class="cv-hud-line">Claude wants to run:</div>
+      <div class="cv-hud-tool"><b>Bash</b> · git push origin main</div>
+      <div class="cv-hud-btns"><span class="allow">Allow</span><span class="deny">Deny</span></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="cv-band reveal" id="how">
+    <div class="cv-head"><div class="cv-kick">Architecture · three pieces</div>
+      <h2>Your terminal, a relay, your glasses.</h2>
+      <p>Clairvoyant attaches to the Claude Code sessions you already run. Nothing moves to the cloud; the relay lives on your machine and the glasses talk to it over your Wi-Fi.</p></div>
+    <div class="cv-arch">
+      <div class="cv-node"><div class="cv-kick">runs claude</div><div class="t">Your terminal</div><div class="d">sessions you already started</div></div>
+      <div class="cv-link"><span class="arrow">→→</span>PreToolUse hook<br>unix socket</div>
+      <div class="cv-node"><div class="cv-kick">on your machine</div><div class="t">Relay</div><div class="d">escalates &amp; streams</div></div>
+      <div class="cv-link"><span class="arrow">→→</span>WebSocket<br>LAN only</div>
+      <div class="cv-node"><div class="cv-kick">on your face</div><div class="t">Glasses</div><div class="d">monitor · allow · deny</div></div>
+    </div>
+    <div class="cv-cards">
+      <div class="cv-card"><div class="n">01</div><h4>Hook escalation</h4>
+        <p>Every tool call hits the relay through a PreToolUse hook. It either passes through to Claude's own permission flow or blocks until you answer on the glasses.</p></div>
+      <div class="cv-card"><div class="n">02</div><h4>Live transcript</h4>
+        <p>Each session's conversation streams to the glasses over WebSocket, so you can watch what your agent is doing — not just gate it.</p></div>
+      <div class="cv-card"><div class="n">03</div><h4>QR pairing</h4>
+        <p>The relay dashboard shows a QR carrying host, port, and a channel token. Scan it once with the glasses and you're paired.</p></div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section class="cv-band reveal" id="demo">
+    <div class="cv-head"><div class="cv-kick">Demo</div>
+      <h2>See it on glass.</h2></div>
+    <div class="cv-demo"><span>demo video — coming soon</span></div>
+  </section>
+
+  <!-- SECURITY -->
+  <section class="cv-band reveal" id="security">
+    <div class="cv-head"><div class="cv-kick">Security model · safe by construction</div>
+      <h2>Your Claude credential never leaves your machine.</h2>
+      <p>The glasses don't log in to Claude. They authenticate to the relay with a secret it mints itself.</p></div>
+    <div class="cv-cards four">
+      <div class="cv-card"><h4>Credential stays home</h4>
+        <p>Claude is authenticated on the host, exactly as before. The relay never forwards or copies the credential.</p></div>
+      <div class="cv-card"><h4>Glasses get three things</h4>
+        <p>Host, port, and a channel token — nothing else. That's the entire contents of the pairing QR.</p></div>
+      <div class="cv-card"><h4>Fail-open, never bypass</h4>
+        <p>Anything not explicitly answered on the glasses falls back to Claude's own permission prompt. The relay can't silently approve.</p></div>
+      <div class="cv-card"><h4>Revoke in one click</h4>
+        <p>Leaked the QR? Regenerate the token and every previously paired device is locked out.</p></div>
+    </div>
+  </section>
+
+  <!-- INSTALL -->
+  <section class="cv-band reveal" id="install">
+    <div class="cv-head"><div class="cv-kick">Install · two halves</div>
+      <h2>Glasses app + host relay.</h2>
+      <p>The Android app runs on the glasses; the relay runs next to your terminals. Pair them with the QR and run Claude Code as usual.</p></div>
+    <div class="cv-install">
+      <div class="cv-ibox">
+        <span class="cv-soon">coming soon</span>
+        <div class="for">on the glasses</div>
+        <h3>Clairvoyant for Android</h3>
+        <p>Sideload the APK on camera-equipped Android smart glasses, open the app, and scan the relay's QR.</p>
+        <p style="margin-top:14px"><a class="cv-btn cv-btn-primary" href="#" aria-disabled="true">Download APK</a></p>
+      </div>
+      <div class="cv-ibox">
+        <span class="cv-soon">releases being prepared</span>
+        <div class="for">on your machine</div>
+        <h3>Clairvoyant Relay</h3>
+        <p>Install the relay, add the hook to your Claude Code settings, and start it. It prints a dashboard URL with the pairing QR.</p>
+        <pre><span class="c"># host machine</span>
+npm install -g clairvoyant-relay
+clairvoyant-relay install-hook
+clairvoyant-relay start
+<span class="c"># then scan the QR from the dashboard</span></pre>
+      </div>
+    </div>
+    <div class="cv-contact">
+      <div class="cv-kick">Early access</div>
+      <h2>Want to try it before the release?</h2>
+      <p>Clairvoyant is in active development. If you have compatible glasses and want an early build, reach out.</p>
+      <a class="cv-btn cv-btn-primary" href="mailto:srchig@iu.edu?subject=Clairvoyant%20early%20access">srchig@iu.edu</a>
+    </div>
+  </section>
+</div>
