@@ -38,6 +38,8 @@ The first version hung the approvals off a PreToolUse hook — the only seam I k
 
 The fix was discovering that a seam now exists exactly where I needed it: the `PermissionRequest` hook event fires *after* Claude's permission evaluation, only when a dialog is genuinely about to appear, and its JSON reply answers that dialog. The whole heuristic layer — mode tables, rule parsing — got deleted the same hour. The glasses now prompt if and only if the terminal would have.
 
+That same hook payload turned out to carry the rules Claude would add if you picked "don't ask again," and its reply can persist them. So the glasses grew a third answer: a touchpad *long-press* means "always allow" — approve this call and remember the rule — shown only when Claude actually offers it for that prompt. Tap to allow once, long-press to allow forever, temple button to deny.
+
 ## The tap that took photos
 
 The glasses-side lesson was stranger. On Rokid's Android glasses, tap-to-approve did nothing — and took a *photo* instead. The official docs say a touchpad tap reaches apps as an ENTER key event. On my firmware it doesn't: the tap arrives as keycode 184, which the system consumes (never delivering a key event to the app) and re-emits as a protected ordered broadcast, `ACTION_BOLON_TAP`, whose default handler is the system camera. I found this by pulling `services.jar` off the device and decompiling the input policy.
