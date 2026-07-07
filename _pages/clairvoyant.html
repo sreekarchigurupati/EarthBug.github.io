@@ -90,7 +90,11 @@ description: Monitor and approve your Claude Code sessions from smart glasses. A
         <span class="cv-soon">v0.1.0</span>
         <div class="for">on the glasses</div>
         <h3>Clairvoyant for Android</h3>
-        <p>Sideload the APK on camera-equipped Android smart glasses, open the app, and scan the relay's QR.</p>
+        <p>Camera-equipped Android smart glasses — built and tested on <a href="https://global.rokid.com/products/rokid-glasses">Rokid Glasses</a>. Enable ADB debugging in the Hi Rokid companion app, connect the 5-pin dev cable, then sideload:</p>
+        <pre><span class="c"># with Android platform-tools installed</span>
+adb install -r clairvoyant-0.1.0.apk
+<span class="c"># open Clairvoyant, then scan the relay's QR</span></pre>
+        <p class="cv-note">No cable? A community <a href="https://github.com/Miniontoby/RokidApkUploader">Wi-Fi APK uploader</a> can push it over the air.</p>
         <p style="margin-top:14px"><a class="cv-btn cv-btn-primary" href="https://github.com/sreekarchigurupati/clairvoyant/releases/latest">Download APK ↗</a></p>
       </div>
       <div class="cv-ibox">
