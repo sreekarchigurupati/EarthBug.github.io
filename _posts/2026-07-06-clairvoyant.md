@@ -27,10 +27,22 @@ The architecture that worked flips the problem: don't move the credential to the
 
 A small relay runs on my machine, and it attaches to normal terminal Claude Code sessions through two seams:
 
-- **Approvals** ride a [PreToolUse hook](https://docs.claude.com/en/docs/claude-code/hooks). Installed in Claude's `settings.json`, the hook calls the relay over a local Unix socket on every tool call. The relay either passes through to Claude's own permission flow or escalates to the glasses and blocks until I answer — allow or deny, from anywhere on the LAN.
-- **Monitoring** comes from tailing each session's transcript JSONL and streaming it to the glasses over a WebSocket, so I can watch what the agent is doing, not just gate it.
+- **Approvals** ride a [PermissionRequest hook](https://docs.claude.com/en/docs/claude-code/hooks). Installed in Claude's `settings.json`, it fires only when Claude Code has *already decided to show a permission dialog*, and its answer resolves that exact dialog. The hook calls the relay over a local Unix socket; the relay mirrors the prompt to the glasses and blocks until I answer — allow or deny, from anywhere on the LAN.
+- **Monitoring** comes from a PreToolUse hook that only tracks sessions (never answers permissions), plus tailing each session's transcript JSONL and streaming it to the glasses over a WebSocket — so I can watch what the agent is doing, not just gate it.
 
 Pairing is a QR on the relay's dashboard carrying exactly three things: host, port, and a channel token the relay mints itself. The glasses authenticate to the *relay*, never to Claude. And the failure mode is deliberately boring: anything not explicitly answered on the glasses falls back to Claude's own prompt in the terminal — the relay can't silently approve anything, and an absent device never blocks your terminal.
+
+## Prompt parity, the hard way
+
+The first version hung the approvals off a PreToolUse hook — the only seam I knew about. PreToolUse fires on *every* tool call, before Claude runs its own permission evaluation, so the relay had to guess whether Claude was going to prompt: reimplement the permission-mode table, parse `settings.json` allow rules, keep a list of read-only tools. The guesses were conservative and still wrong in both directions — the glasses would ask for commands Claude had auto-approved, and an approval on the glasses could race Claude's own flow and leave the terminal asking again.
+
+The fix was discovering that a seam now exists exactly where I needed it: the `PermissionRequest` hook event fires *after* Claude's permission evaluation, only when a dialog is genuinely about to appear, and its JSON reply answers that dialog. The whole heuristic layer — mode tables, rule parsing — got deleted the same hour. The glasses now prompt if and only if the terminal would have.
+
+## The tap that took photos
+
+The glasses-side lesson was stranger. On Rokid's Android glasses, tap-to-approve did nothing — and took a *photo* instead. The official docs say a touchpad tap reaches apps as an ENTER key event. On my firmware it doesn't: the tap arrives as keycode 184, which the system consumes (never delivering a key event to the app) and re-emits as a protected ordered broadcast, `ACTION_BOLON_TAP`, whose default handler is the system camera. I found this by pulling `services.jar` off the device and decompiling the input policy.
+
+So the app now claims the tap the same way the system camera would have received it: a broadcast receiver at priority 100 that answers the visible prompt and calls `abortBroadcast()`, so the photo handler never runs. Two smaller traps followed: the ENTER key event that *does* exist arrives with only its UP half (the system eats the DOWN while deciding whether you're long-pressing for the AI assistant), and key events route to whatever view has focus first — my first "working" build was helpfully clicking the session tab title. Input handling on head-worn Android is archaeology, not API reading.
 
 ## Where it stands
 
