@@ -7,7 +7,7 @@ categories: projects
 tags: claude-code smart-glasses android agents
 ---
 
-> TL;DR: Clairvoyant streams your running Claude Code sessions to smart glasses and lets you approve or deny tool permissions with a glance. Your Claude credential never leaves your machine. Showcase and install details live at [/clairvoyant/](/clairvoyant/).
+> TL;DR: Clairvoyant streams your running Claude Code sessions to smart glasses and lets you approve or deny tool permissions with a glance. Your Claude credential never leaves your machine. Out now — `npm i -g clairvoyant-relay` and the [glasses APK](https://github.com/sreekarchigurupati/clairvoyant/releases/latest); showcase and install details at [/clairvoyant/](/clairvoyant/).
 
 ## The itch
 
@@ -48,4 +48,13 @@ So the app now claims the tap the same way the system camera would have received
 
 ## Where it stands
 
-The relay (Node/TypeScript) and the Android glasses app both work today on my LAN; releases — an APK and an npm package for the relay — are being prepared. The showcase page has the architecture, the security model, and the install flow: **[sreekar.ch/clairvoyant](/clairvoyant/)**. If you have compatible glasses and want an early build, [email me](mailto:srchig@iu.edu?subject=Clairvoyant%20early%20access).
+It's out. **v0.1.0** is the first release: the relay is on npm and the signed glasses APK is a GitHub release asset.
+
+```sh
+# on your machine
+npm install -g clairvoyant-relay
+clairvoyant-relay install-hook   # adds the PermissionRequest + PreToolUse hooks
+clairvoyant-relay start          # prints a dashboard URL with the pairing QR
+```
+
+Then sideload the [APK](https://github.com/sreekarchigurupati/clairvoyant/releases/latest) on camera-equipped Android smart glasses and scan the QR. The [showcase page](/clairvoyant/) has the architecture, the security model, and the full install flow; the code is on [GitHub](https://github.com/sreekarchigurupati/clairvoyant). Both halves are open source (MIT). Found a bug or have glasses I haven't tested? [Email me](mailto:srchig@iu.edu?subject=Clairvoyant).
