@@ -7,7 +7,7 @@ categories: projects
 tags: claude-code smart-glasses android agents
 ---
 
-> TL;DR: Clairvoyant streams your running Claude Code sessions to smart glasses and lets you approve or deny tool permissions with a glance. Your Claude credential never leaves your machine. Out now — `npm i -g clairvoyant-relay` and the [glasses APK](https://github.com/sreekarchigurupati/clairvoyant/releases/latest); showcase and install details at [/clairvoyant/](/clairvoyant/).
+> TL;DR: Clairvoyant streams your running Claude Code sessions to smart glasses and lets you approve or deny tool permissions with a glance. Your Claude credential never leaves your machine — and with one flag it now works away from home too, over a Tailscale Funnel. Out now — `npm i -g clairvoyant-relay` and the [glasses APK](https://github.com/sreekarchigurupati/clairvoyant/releases/latest); showcase and install details at [/clairvoyant/](/clairvoyant/).
 
 ## The itch
 
@@ -46,6 +46,16 @@ The glasses-side lesson was stranger. On Rokid's Android glasses, tap-to-approve
 
 So the app now claims the tap the same way the system camera would have received it: a broadcast receiver at priority 100 that answers the visible prompt and calls `abortBroadcast()`, so the photo handler never runs. Two smaller traps followed: the ENTER key event that *does* exist arrives with only its UP half (the system eats the DOWN while deciding whether you're long-pressing for the AI assistant), and key events route to whatever view has focus first — my first "working" build was helpfully clicking the session tab title. Input handling on head-worn Android is archaeology, not API reading.
 
+## Leaving the house
+
+The LAN version had an obvious ceiling: the glasses only worked where the relay's Wi-Fi did. I wanted to take a walk while a long session ran — glasses on my phone's hotspot, relay at home, both machines on my tailnet. Should be easy, right? The phone runs Tailscale; surely the glasses can ride along.
+
+They can't, and the reason is a fact I didn't know before this project: **hotspot tethering bypasses the phone's VPN.** On both Android and iOS, traffic from tethered clients never enters the tunnel — the glasses can see the internet through the phone but can never reach a tailnet IP through it. Sideloading Tailscale onto the glasses themselves works (they're Android; I tried it), but "step one: sideload a VPN onto your glasses and log in with the touchpad" is not an instruction I'm willing to ship to anyone else.
+
+So the relay meets the glasses halfway, on the public internet — as narrowly as possible. `clairvoyant-relay start --funnel` publishes exactly one path, the WebSocket endpoint, through [Tailscale Funnel](https://tailscale.com/kb/1223/funnel): `wss://your-machine.your-tailnet.ts.net/ws`, public but gated by the same 192-bit channel token as ever. The dashboard — whose QR embeds that token — never goes through the funnel; it stays reachable only from your LAN. One gotcha worth knowing if you already use Funnel: it's per-port, not per-path, so anything else you've mounted on 443 goes public with it (the relay can share a different funnel port if that bites you).
+
+The pairing QR now carries two addresses instead of one — the LAN endpoint and the funnel endpoint — and the glasses dial them in order. LAN first with a three-second timeout: at home you either connect fast or you're not home. Then the funnel. Every reconnect cycle starts over LAN-first, so walking out mid-session fails over to the funnel automatically, and coming home drifts you back to the direct path on the next reconnect. No toggle, no settings screen; you scan the QR once at the computer and the connection just follows you around. If you tunnel some other way, `--advertise-url` puts any ngrok/cloudflared address in the QR instead.
+
 ## Where it stands
 
 It's out. **v0.1.0** is the first release: the relay is on npm and the signed glasses APK is a GitHub release asset.
@@ -55,6 +65,8 @@ It's out. **v0.1.0** is the first release: the relay is on npm and the signed gl
 npm install -g clairvoyant-relay
 clairvoyant-relay install-hook   # adds the PermissionRequest + PreToolUse hooks
 clairvoyant-relay start          # prints a dashboard URL with the pairing QR
+# or, to use the glasses away from home (needs Tailscale on this machine):
+clairvoyant-relay start --funnel
 ```
 
 Then sideload the [APK](https://github.com/sreekarchigurupati/clairvoyant/releases/latest) on camera-equipped Android smart glasses and scan the QR. The [showcase page](/clairvoyant/) has the architecture, the security model, and the full install flow; the code is on [GitHub](https://github.com/sreekarchigurupati/clairvoyant). Both halves are open source (MIT). Found a bug or have glasses I haven't tested? [Email me](mailto:srchig@iu.edu?subject=Clairvoyant).

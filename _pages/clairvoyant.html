@@ -13,11 +13,11 @@ description: Monitor and approve your Claude Code sessions from smart glasses. A
     <div>
       <div class="cv-meta">
         <span><i></i>v0.1.0 available</span><span>Android · smart glasses</span>
-        <span>local relay</span><span>LAN-only</span>
+        <span>local relay</span><span>LAN-first · funnel optional</span>
       </div>
       <div class="cv-kick">Claude Code on your glasses</div>
-      <h1>Approve your agent from <span class="cv-grad">anywhere in the house</span> — Clairvoyant.</h1>
-      <p class="cv-lede">Clairvoyant streams your running Claude Code sessions to camera-equipped smart glasses and lets you approve or deny tool permissions with a glance — while your credentials never leave your machine.</p>
+      <h1>Approve your agent from <span class="cv-grad">anywhere at all</span> — Clairvoyant.</h1>
+      <p class="cv-lede">Clairvoyant streams your running Claude Code sessions to camera-equipped smart glasses and lets you approve or deny tool permissions with a glance — while your credentials never leave your machine. At home it's all LAN; one flag takes it anywhere with an internet connection.</p>
       <div class="cv-cta">
         <a class="cv-btn cv-btn-primary" href="#install">Install ↓</a>
         <a class="cv-btn cv-btn-ghost" href="https://github.com/sreekarchigurupati/clairvoyant">GitHub ↗</a>
@@ -38,21 +38,23 @@ description: Monitor and approve your Claude Code sessions from smart glasses. A
   <section class="cv-band reveal" id="how">
     <div class="cv-head"><div class="cv-kick">Architecture · three pieces</div>
       <h2>Your terminal, a relay, your glasses.</h2>
-      <p>Clairvoyant attaches to the Claude Code sessions you already run. Nothing moves to the cloud; the relay lives on your machine and the glasses talk to it over your Wi-Fi.</p></div>
+      <p>Clairvoyant attaches to the Claude Code sessions you already run. Nothing moves to the cloud; the relay lives on your machine and the glasses talk to it over your Wi-Fi — or, away from home, over a token-gated Tailscale Funnel.</p></div>
     <div class="cv-arch">
       <div class="cv-node"><div class="cv-kick">runs claude</div><div class="t">Your terminal</div><div class="d">sessions you already started</div></div>
       <div class="cv-link"><span class="arrow">→→</span>PermissionRequest hook<br>unix socket</div>
       <div class="cv-node"><div class="cv-kick">on your machine</div><div class="t">Relay</div><div class="d">escalates &amp; streams</div></div>
-      <div class="cv-link"><span class="arrow">→→</span>WebSocket<br>LAN only</div>
+      <div class="cv-link"><span class="arrow">→→</span>WebSocket<br>LAN first · funnel fallback</div>
       <div class="cv-node"><div class="cv-kick">on your face</div><div class="t">Glasses</div><div class="d">monitor · allow · deny</div></div>
     </div>
-    <div class="cv-cards">
+    <div class="cv-cards four">
       <div class="cv-card"><div class="n">01</div><h4>Prompt mirroring</h4>
         <p>A PermissionRequest hook fires only when Claude Code is actually showing a permission dialog, and your answer on the glasses resolves that exact dialog. No guessing, no double prompts — glasses ask if and only if the terminal would.</p></div>
       <div class="cv-card"><div class="n">02</div><h4>Live transcript</h4>
         <p>Each session's conversation streams to the glasses over WebSocket, so you can watch what your agent is doing — not just gate it.</p></div>
       <div class="cv-card"><div class="n">03</div><h4>QR pairing</h4>
         <p>The relay dashboard shows a QR carrying host, port, and a channel token. Scan it once with the glasses and you're paired.</p></div>
+      <div class="cv-card"><div class="n">04</div><h4>Away from home</h4>
+        <p>Start the relay with <code>--funnel</code> and it publishes just its WebSocket through Tailscale Funnel. The glasses dial your LAN first (3-second timeout), then fall back to the funnel — walk out mid-session and the connection follows you.</p></div>
     </div>
   </section>
 
@@ -72,7 +74,7 @@ description: Monitor and approve your Claude Code sessions from smart glasses. A
       <div class="cv-card"><h4>Credential stays home</h4>
         <p>Claude is authenticated on the host, exactly as before. The relay never forwards or copies the credential.</p></div>
       <div class="cv-card"><h4>Glasses get three things</h4>
-        <p>Host, port, and a channel token — nothing else. That's the entire contents of the pairing QR.</p></div>
+        <p>Host, port, and a channel token — plus, in funnel mode, the public fallback address. That's the entire contents of the pairing QR. The dashboard (and its token) never leaves your LAN; only the token-gated WebSocket is ever public.</p></div>
       <div class="cv-card"><h4>Fail-open, never bypass</h4>
         <p>Anything not explicitly answered on the glasses falls back to Claude's own permission prompt. The relay can't silently approve.</p></div>
       <div class="cv-card"><h4>Revoke in one click</h4>
@@ -106,6 +108,8 @@ adb install -r clairvoyant-0.1.0.apk
 npm install -g clairvoyant-relay
 clairvoyant-relay install-hook
 clairvoyant-relay start
+<span class="c"># away-from-home mode (needs Tailscale + Funnel):</span>
+clairvoyant-relay start --funnel
 <span class="c"># then scan the QR from the dashboard</span></pre>
       </div>
     </div>
