@@ -8,7 +8,7 @@
   -webkit-background-clip:text; background-clip:text; color:transparent; }
 
 /* hero */
-.cv-hero{ padding:90px 0 64px; display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:48px; align-items:center; position:relative; }
+.cv-hero{ padding:90px 0 64px; display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:48px; align-items:center; position:relative; overflow:hidden; /* clips the receding temple arm's layout box */ }
 .cv-hero::before{ content:""; position:absolute; inset:0; opacity:.5; z-index:-1;
   background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
   background-size:34px 34px; -webkit-mask:radial-gradient(120% 80% at 30% 0%,#000 30%,transparent 75%); mask:radial-gradient(120% 80% at 30% 0%,#000 30%,transparent 75%); }
@@ -23,29 +23,52 @@
 .cv-btn-primary{ background:var(--accent); color:var(--bg); }
 .cv-btn-ghost{ border-color:var(--line); color:var(--fg); }
 
-/* signature: glasses-HUD permission prompt */
-.cv-hud{ font-family:var(--mono); background:var(--cv-glass); border:1px solid var(--line);
-  border-radius:14px; padding:18px 20px 20px; max-width:400px; justify-self:end; width:100%;
-  box-shadow:0 0 0 6px color-mix(in oklch,var(--cv-glass) 60%,transparent), 0 24px 60px -30px #000;
-  position:relative; overflow:hidden; }
-.cv-hud::after{ content:""; position:absolute; inset:0; pointer-events:none; opacity:.35;
-  background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.025) 3px 4px); }
-.cv-hud-top{ display:flex; justify-content:space-between; font-size:10.5px; letter-spacing:.18em;
-  text-transform:uppercase; color:var(--fg-mute); margin-bottom:16px; }
-.cv-live{ display:flex; gap:6px; align-items:center; color:var(--cv-allow); }
-.cv-live i{ width:6px; height:6px; border-radius:50%; background:var(--cv-allow); box-shadow:0 0 8px var(--cv-allow); }
-.cv-hud-line{ font-size:12.5px; margin:4px 0; }
-.cv-hud-line.dim{ color:var(--fg-mute); }
-.cv-hud-tool{ font-size:13px; margin:10px 0 16px; padding:9px 12px; border:1px solid var(--line-soft);
-  border-radius:8px; background:color-mix(in oklch,var(--accent) 8%,transparent); color:var(--fg); overflow-wrap:anywhere; }
-.cv-hud-tool b{ color:var(--accent); font-weight:700; }
-.cv-hud-btns{ display:flex; gap:10px; font-size:12.5px; font-weight:700; }
-.cv-hud-btns span{ flex:1; text-align:center; padding:8px 0; border-radius:7px; border:1px solid; }
-.cv-hud-btns .allow{ color:var(--cv-allow); border-color:color-mix(in oklch,var(--cv-allow) 45%,transparent); background:color-mix(in oklch,var(--cv-allow) 12%,transparent); }
-.cv-hud-btns .deny{ color:var(--cv-deny); border-color:color-mix(in oklch,var(--cv-deny) 40%,transparent); background:color-mix(in oklch,var(--cv-deny) 10%,transparent); }
-.cv-hud-demo video{ display:block; width:100%; aspect-ratio:3/4; object-fit:cover;
-  border-radius:9px; border:1px solid var(--line-soft); background:#000; margin:0 0 12px; }
-.cv-hud-demo .cv-hud-line{ text-align:center; }
+
+/* hero: 3D smart glasses with the demo playing on the near lens */
+/* NOTE: no transforms/perspective anywhere above the <video> — live 3D over
+   video flickers or blanks on some GPUs. The glasses read via shape + light. */
+.cv-specs-scene{ position:relative; justify-self:end; width:100%; max-width:470px; }
+.cv-specs-scene::before{ content:""; position:absolute; inset:-70px -50px -30px; pointer-events:none;
+  background:
+    radial-gradient(58% 52% at 50% 42%, color-mix(in oklch, var(--accent) 13%, transparent), transparent 70%),
+    radial-gradient(40% 45% at 76% 55%, color-mix(in oklch, var(--cv-allow) 8%, transparent), transparent 70%); }
+.cv-specs{ position:relative; padding-top:14px; }
+.cv-front{ position:relative; display:flex; align-items:flex-start; }
+.cv-front::before{ content:""; position:absolute; left:2px; right:2px; top:0; height:20px;
+  background:linear-gradient(180deg,#565e69,#20242b 55%,#14181e); border-radius:12px 14px 4px 4px;
+  box-shadow:0 10px 24px -8px rgba(0,0,0,.7); }
+.cv-rim{ position:relative; flex:1; height:148px; margin-top:6px; border-radius:18px 18px 42px 42px;
+  border:7px solid #1d2127; background:#05070a; overflow:hidden;
+  box-shadow:0 -1px 0 1px #4a515b, 0 26px 50px -28px rgba(0,0,0,.9),
+    inset 0 0 0 1px rgba(255,255,255,.07); }
+.cv-bridge{ width:34px; height:12px; margin-top:14px; align-self:flex-start;
+  background:linear-gradient(180deg,#2b2f36,#14161a); border-radius:0 0 8px 8px; }
+.cv-rim video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  object-position:50% 58%; display:block; }
+.cv-rim-near::after{ content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  /* waveguide projector glow bleeding in from the temple side */
+  box-shadow:inset -16px 0 34px -16px color-mix(in oklch, var(--cv-allow) 60%, transparent); }
+.cv-rim-far video{ filter:brightness(.7) saturate(.9); }
+.cv-rim-far::after{ content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  /* projector glow on this eye's temple side (mirrored) */
+  box-shadow:inset 16px 0 34px -16px color-mix(in oklch, var(--cv-allow) 45%, transparent); }
+.cv-glass-tint{ position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+  background:
+    linear-gradient(118deg, transparent 44%, rgba(255,255,255,.06) 49%, transparent 56%),
+    radial-gradient(120% 90% at 70% 0%, rgba(120,140,160,.12), transparent 60%),
+    rgba(5,7,10,.28); }
+.cv-lens-glare{ position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  background:
+    linear-gradient(112deg, transparent 40%, rgba(255,255,255,.10) 46%, rgba(255,255,255,.02) 52%, transparent 58%),
+    radial-gradient(90% 36% at 24% -4%, rgba(255,255,255,.12), transparent 60%); }
+/* folded temple hinges peeking above the browline */
+.cv-hinge{ position:absolute; top:0; width:26px; height:22px; border-radius:8px 8px 3px 3px;
+  background:linear-gradient(180deg,#4a515b,#171a1f 80%); box-shadow:0 6px 12px -6px rgba(0,0,0,.8); }
+.cv-hinge-l{ left:6px; }
+.cv-hinge-r{ right:6px; }
+.cv-lens-cap{ margin-top:10px; text-align:center; font-family:var(--mono);
+  font-size:12px; line-height:1.9; color:var(--fg-mute); }
+.cv-lens-cap a{ color:var(--accent); }
 
 /* bands */
 .cv-band{ padding:60px 0; border-top:1px solid var(--line-soft); }
@@ -88,7 +111,7 @@
 
 @media(max-width:900px){
   .cv-hero{ grid-template-columns:1fr; padding-top:64px; }
-  .cv-hud{ justify-self:start; }
+  .cv-lens-scene{ justify-self:start; }
   .cv-arch{ grid-template-columns:1fr; }
   .cv-link .arrow{ transform:rotate(90deg); display:inline-block; margin:0 8px 0 0; }
   .cv-cards,.cv-cards.four{ grid-template-columns:1fr 1fr; }

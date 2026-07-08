@@ -24,13 +24,29 @@ description: Monitor and approve your Claude Code sessions from smart glasses. A
         <span class="cv-sub">open source (MIT) · APK + npm relay</span>
       </div>
     </div>
-    <div class="cv-hud cv-hud-demo">
-      <div class="cv-hud-top"><span>clairvoyant</span><span class="cv-live"><i></i>recorded on glass</span></div>
-      <video autoplay muted loop playsinline preload="metadata" poster="/assets/clairvoyant/demo-poster.jpg"
-        aria-label="Demo recorded through the glasses: a live Claude Code session streams onto the lens and a Bash permission prompt is approved with a tap.">
-        <source src="/assets/clairvoyant/demo.mp4" type="video/mp4">
-      </video>
-      <div class="cv-hud-line dim">through the lens · real session · 4× speed · the only keyboard is the piano</div>
+    <div class="cv-specs-scene">
+      <div class="cv-specs">
+        <span class="cv-hinge cv-hinge-l" aria-hidden="true"></span>
+        <span class="cv-hinge cv-hinge-r" aria-hidden="true"></span>
+        <div class="cv-front">
+          <div class="cv-rim cv-rim-far" aria-hidden="true">
+            <video autoplay muted loop playsinline preload="metadata" poster="/assets/clairvoyant/demo-poster.jpg" tabindex="-1">
+              <source src="/assets/clairvoyant/demo.mp4" type="video/mp4">
+            </video>
+            <span class="cv-glass-tint"></span>
+          </div>
+          <span class="cv-bridge" aria-hidden="true"></span>
+          <div class="cv-rim cv-rim-near">
+            <video autoplay muted loop playsinline preload="metadata" poster="/assets/clairvoyant/demo-poster.jpg"
+              aria-label="Demo recorded through the glasses: a live Claude Code session streams onto the lens and a Bash permission prompt is approved with a tap.">
+              <source src="/assets/clairvoyant/demo.mp4" type="video/mp4">
+            </video>
+            <span class="cv-lens-glare" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+      <div class="cv-lens-cap">recorded on glass · real session · 4× speed<br>
+        <a href="/2026/07/06/clairvoyant.html">watch the full demo ↗</a></div>
     </div>
   </section>
 
