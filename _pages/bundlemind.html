@@ -1,0 +1,174 @@
+---
+layout: default
+permalink: /bundlemind/
+title: BundleMind
+---
+<link rel="stylesheet" href="/assets/bundlemind/bundlemind.css">
+<script>window.BUNDLEMIND = {{ site.data.bundlemind | jsonify }};</script>
+
+{% assign d = site.data.bundlemind %}
+<div class="bmind">
+
+  <!-- HERO -->
+  <section class="bm-hero reveal">
+    <div class="bm-meta">
+      <span><i></i>in active development</span><span>tractography</span>
+      <span>natural language</span><span>fully on-device</span>
+    </div>
+    <div class="bm-kick">Region-grounded pathway selection</div>
+    <h1>Ask for a pathway.<br><span class="bm-grad">Get streamlines.</span></h1>
+    <p class="bm-lede">Pulling one white-matter pathway out of a whole-brain tractogram still means expert manual ROI placement or a hand-tuned, atlas-specific pipeline. BundleMind takes the question the way you'd say it and returns streamlines — anatomically grounded, on your own laptop.</p>
+    <div class="bm-cta">
+      <a class="bm-btn bm-btn-primary" href="mailto:srchig@iu.edu?subject=BundleMind">Get in touch</a>
+      <a class="bm-btn bm-btn-ghost" href="#flythrough">See it work ↓</a>
+      <span class="bm-sub">Indiana University · BRAIN 2026</span>
+    </div>
+  </section>
+
+  <!-- FLYTHROUGH — the main item -->
+  <section class="bm-band reveal" id="flythrough">
+    <div class="bm-head"><div class="bm-kick">Interactive · one tractogram, {{ d.segments | size }} queries</div>
+      <h2>{{ d.segments | size }} questions, no manual ROIs.</h2>
+      <p>One continuous pass over the same {{ d.video.tractogram }}, holding on each selection as it lands. Every one of them came from the plain-language query shown with it — click a marker, or any question below, to jump there.</p></div>
+
+    <div id="bm-fly">
+      <div class="bm-bleed">
+        <div class="bm-screen" style="--seg:{{ d.types[0].color }}">
+          <video src="{{ d.video.src }}" poster="{{ d.video.poster }}"
+                 autoplay muted loop playsinline preload="auto"
+                 aria-label="BundleMind selecting white-matter pathways from natural-language queries"></video>
+          <div class="bm-cap" style="--seg:{{ d.types[0].color }}">
+            <div class="t">{{ d.types[0].label }}</div>
+            <div class="q">“{{ d.segments[0].query }}”</div>
+            <div class="d">{{ d.segments[0].dsl }}</div>
+            <div class="c"><b>{{ d.segments[0].n }}</b> streamlines selected</div>
+          </div>
+        </div>
+        <div class="bm-ticks" aria-label="jump to a query">
+          {% for s in d.segments %}{% assign ty = d.types | where: "id", s.type | first %}
+          <button type="button" class="bm-tick" data-i="{{ forloop.index0 }}" style="--tc:{{ ty.color }}"
+                  aria-current="false" aria-label="{{ s.query }}"><i></i><span class="tip">{{ s.query }}</span></button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="bm-idx">
+        {% assign prev = "" %}
+        {% for s in d.segments %}
+          {% if s.type != prev %}
+            {% unless forloop.first %}</div></div>{% endunless %}
+            {% assign ty = d.types | where: "id", s.type | first %}
+            <div class="bm-idx-g" style="--gc:{{ ty.color }}">
+            <h4>{{ ty.label }}</h4>
+            <div class="bm-idx-qs">
+            {% assign prev = s.type %}
+          {% endif %}
+          <button type="button" class="bm-q" data-i="{{ forloop.index0 }}" aria-current="false">{{ s.query }}</button>
+          {% if forloop.last %}</div></div>{% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <noscript><p class="bm-note" style="margin-top:16px">Enable JavaScript to jump between queries — the clip plays through all {{ d.segments | size }} regardless.</p></noscript>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="bm-band reveal" id="method">
+    <div class="bm-head"><div class="bm-kick">How it works</div>
+      <h2>Two query paths, one router.</h2>
+      <p>A free-form query enters a router that tries the deterministic filter first and falls back to a learned embedding when the phrasing is open-ended or out of vocabulary. Both paths end at the same region-grounded executor.</p></div>
+
+    <div class="bm-router">
+      <div class="bm-node">
+        <div class="n">In</div>
+        <h4>Free-form query</h4>
+        <p>Typed the way a neuroscientist, a student or a clinician would actually say it — no controlled vocabulary, no ROI painting.</p>
+      </div>
+      <div class="bm-paths">
+        <div class="bm-node alt">
+          <div class="n">Path A</div>
+          <h4>Filter</h4>
+          <p>A local language model translates the question into a compact JSON program. It decodes under a schema, so the output is always parseable.</p>
+        </div>
+        <div class="bm-node alt2">
+          <div class="n">Path B</div>
+          <h4>Embedding</h4>
+          <p>A learned text↔streamline space ranks atlas bundles by similarity, catching phrasings the filter path has no rule for.</p>
+        </div>
+      </div>
+      <div class="bm-node">
+        <div class="n">Out</div>
+        <h4>Grounded executor</h4>
+        <p>Cytoarchitectonic waypoint labels decide which streamlines actually belong — the same check whichever path produced the program.</p>
+      </div>
+    </div>
+
+    <div class="bm-head" style="margin-top:52px"><div class="bm-kick">The contract</div>
+      <h2>Language in, a small program out.</h2>
+      <p>One compact DSL sits between the language model and a deterministic geometric executor. It is the whole interface — everything the system can be asked is expressible in these terms.</p></div>
+    <div class="bm-vocab">
+      {% for op in d.dsl_vocabulary %}<code>{{ op }}</code>{% endfor %}
+    </div>
+    <pre class="bm-code"><span class="cm">// “tracts through thalamus under 80 mm”</span>
+{"and": [
+    {"passes_through": "thalamus"},
+    {"length_between": {"max_mm": 80}}
+]}</pre>
+
+    <div class="bm-head" style="margin-top:52px"><div class="bm-kick">Grounding</div>
+      <h2>Anatomy decides, not geometry alone.</h2>
+      <p>A streamline joins a bundle only when its waypoint labels overlap that bundle's endpoint signature — {{ d.grounding.rule }}. Cross-bundle continuations survive; spurious cortex-wide and wrong-hemisphere streamlines are dropped.</p></div>
+    <div class="bm-ground">
+      {% for r in d.grounding.rows %}
+      <div class="row">
+        <div class="lbl">{{ r.label }}</div>
+        <div class="sub">{{ r.note }}</div>
+        <div class="num"><span class="b">{{ r.before }}</span><span class="arw">→</span><span class="a">{{ r.after }}</span></div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="bm-band reveal" id="results">
+    <div class="bm-head"><div class="bm-kick">On-device benchmark · {{ d.benchmark.n_queries }} queries</div>
+      <h2>+{{ d.benchmark.headline_pct }}% overall F1.</h2>
+      <p>Matched run on the same {{ d.benchmark.n_queries }}-query benchmark. Constraining generation to the schema and grounding region names before generation is what moves the numbers — most of the gain lands on the hardest categories.</p></div>
+    <div class="bm-legend">
+      <span><i></i>baseline</span><span><i class="hi"></i>BundleMind</span>
+    </div>
+    <div class="bm-bars">
+      {% for a in d.benchmark.axes %}
+      <div class="bm-bar">
+        <div class="lab">{{ a.label }}</div>
+        <div class="pair">
+          <div class="t">
+            <div class="track"><div class="fill" style="width:{{ a.baseline | times: 100 }}%"></div></div>
+            <span class="v">{{ a.baseline_fmt }}</span>
+          </div>
+          <div class="t">
+            <div class="track"><div class="fill hi" style="width:{{ a.current | times: 100 }}%"></div></div>
+            <span class="v hi">{{ a.current_fmt }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="bm-chips">
+      <span class="bm-chip">~{{ d.benchmark.latency_s }}s per query after warmup</span>
+      <span class="bm-chip">runs fully local — no cloud, no GPU cluster</span>
+      <span class="bm-chip">data never leaves the device</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="bm-band reveal" id="contact">
+    <div class="bm-contact">
+      <div class="bm-kick">Early access</div>
+      <h2>Want to run BundleMind on your tractograms?</h2>
+      <p>BundleMind is in active development at Indiana University. For access or to collaborate, reach out.</p>
+      <a class="bm-btn bm-btn-primary" href="mailto:srchig@iu.edu?subject=BundleMind">srchig@iu.edu</a>
+    </div>
+  </section>
+</div>
+
+<script src="/assets/bundlemind/flythrough.js" defer></script>

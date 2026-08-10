@@ -1,0 +1,266 @@
+{
+  "video": {
+    "src": "/assets/bundlemind/demo.mp4",
+    "poster": "/assets/bundlemind/poster.webp",
+    "duration": 25.0667,
+    "tractogram": "HCP842 whole-brain atlas"
+  },
+  "types": [
+    {
+      "id": "naming",
+      "label": "Simple naming",
+      "demand": "synonym resolution",
+      "color": "#5fa3f0"
+    },
+    {
+      "id": "functional",
+      "label": "Functional",
+      "demand": "function → structure mapping",
+      "color": "#f0793f"
+    },
+    {
+      "id": "spatial",
+      "label": "Spatial",
+      "demand": "endpoint grounding",
+      "color": "#34c191"
+    },
+    {
+      "id": "compositional",
+      "label": "Compositional",
+      "demand": "multi-constraint composition",
+      "color": "#e2a52a"
+    },
+    {
+      "id": "negation",
+      "label": "Negation",
+      "demand": "boolean inversion",
+      "color": "#ec7ba4"
+    },
+    {
+      "id": "categorical",
+      "label": "Categorical",
+      "demand": "type-level reasoning",
+      "color": "#4cb04c"
+    },
+    {
+      "id": "clinical",
+      "label": "Clinical",
+      "demand": "clinical knowledge",
+      "color": "#a79df0"
+    }
+  ],
+  "segments": [
+    {
+      "type": "naming",
+      "query": "left arcuate fasciculus",
+      "n": 150,
+      "dsl": "{\"atlas_bundle\": \"AF_L\"}",
+      "start": 0.0,
+      "end": 1.5667,
+      "seek": 0.6
+    },
+    {
+      "type": "naming",
+      "query": "right uncinate fasciculus",
+      "n": 150,
+      "dsl": "{\"atlas_bundle\": \"UF_R\"}",
+      "start": 1.5667,
+      "end": 3.1333,
+      "seek": 2.1333
+    },
+    {
+      "type": "naming",
+      "query": "fornix",
+      "n": 150,
+      "dsl": "{\"atlas_bundle\": \"F_L_R\"}",
+      "start": 3.1333,
+      "end": 4.7,
+      "seek": 3.7
+    },
+    {
+      "type": "functional",
+      "query": "the language pathway on the right side",
+      "n": 150,
+      "dsl": "{\"atlas_bundle\": \"AF_R\"}",
+      "start": 4.7,
+      "end": 6.2667,
+      "seek": 5.3
+    },
+    {
+      "type": "functional",
+      "query": "the motor pathway, left",
+      "n": 150,
+      "dsl": "{\"atlas_bundle\": \"CST_L\"}",
+      "start": 6.2667,
+      "end": 7.8333,
+      "seek": 6.8333
+    },
+    {
+      "type": "functional",
+      "query": "the visual pathway on the left",
+      "n": 150,
+      "dsl": "{\"atlas_bundle\": \"OR_L\"}",
+      "start": 7.8333,
+      "end": 9.4,
+      "seek": 8.4
+    },
+    {
+      "type": "spatial",
+      "query": "fibers ending in the occipital lobe",
+      "n": 2647,
+      "dsl": "{\"endpoint_in\": {\"region\": \"occipital lobe\", \"which\": \"either\"}}",
+      "start": 9.4,
+      "end": 10.9667,
+      "seek": 10.0
+    },
+    {
+      "type": "spatial",
+      "query": "bundles that cross the midline",
+      "n": 7477,
+      "dsl": "{\"crosses_midline\": true}",
+      "start": 10.9667,
+      "end": 12.5333,
+      "seek": 11.5333
+    },
+    {
+      "type": "compositional",
+      "query": "commissural bundles longer than 120 mm",
+      "n": 413,
+      "dsl": "{\"and\": [{\"bundle_type\": \"commissural\"}, {\"length_between\": {\"min_mm\": 120}}]}",
+      "start": 12.5333,
+      "end": 14.1,
+      "seek": 13.1
+    },
+    {
+      "type": "compositional",
+      "query": "projection fibers longer than 90 mm",
+      "n": 1835,
+      "dsl": "{\"and\": [{\"length_between\": {\"min_mm\": 90}}, {\"bundle_type\": \"projection\"}]}",
+      "start": 14.1,
+      "end": 15.6667,
+      "seek": 14.7
+    },
+    {
+      "type": "negation",
+      "query": "everything except commissural bundles",
+      "n": 19058,
+      "dsl": "{\"not\": {\"or\": [{\"bundle_type\": \"commissural\"}]}}",
+      "start": 15.6667,
+      "end": 17.2333,
+      "seek": 16.2333
+    },
+    {
+      "type": "negation",
+      "query": "all bundles that are not projection fibers",
+      "n": 6538,
+      "dsl": "{\"not\": {\"bundle_type\": \"projection\"}}",
+      "start": 17.2333,
+      "end": 18.8,
+      "seek": 17.8
+    },
+    {
+      "type": "categorical",
+      "query": "short association fibers",
+      "n": 600,
+      "dsl": "{\"bundle_type\": \"short_association\"}",
+      "start": 18.8,
+      "end": 20.3667,
+      "seek": 19.4
+    },
+    {
+      "type": "categorical",
+      "query": "commissural bundles",
+      "n": 900,
+      "dsl": "{\"bundle_type\": \"commissural\"}",
+      "start": 20.3667,
+      "end": 21.9333,
+      "seek": 20.9333
+    },
+    {
+      "type": "categorical",
+      "query": "projection fibers",
+      "n": 3354,
+      "dsl": "{\"bundle_type\": \"projection\"}",
+      "start": 21.9333,
+      "end": 23.5,
+      "seek": 22.5
+    },
+    {
+      "type": "clinical",
+      "query": "tracts affected in Broca's aphasia",
+      "n": 150,
+      "dsl": "{\"atlas_bundle\": \"AF_L\"}",
+      "start": 23.5,
+      "end": 25.0667,
+      "seek": 24.1
+    }
+  ],
+  "dsl_vocabulary": [
+    "connects",
+    "passes_through",
+    "endpoint_in",
+    "and",
+    "or",
+    "not",
+    "length_between",
+    "atlas_bundle",
+    "bundle_type",
+    "score_above"
+  ],
+  "grounding": {
+    "rule": "two or more shared labels per hemisphere, with endpoint-based hemisphere guards",
+    "rows": [
+      {
+        "label": "Corpus callosum",
+        "note": "false positives",
+        "before": 2111,
+        "after": 208
+      },
+      {
+        "label": "Left arcuate",
+        "note": "midline-crossing",
+        "before": 263,
+        "after": 168
+      }
+    ]
+  },
+  "benchmark": {
+    "n_queries": 88,
+    "headline_pct": 52,
+    "latency_s": 4,
+    "axes": [
+      {
+        "label": "Overall F1",
+        "baseline": 0.225,
+        "current": 0.341,
+        "baseline_fmt": "0.225",
+        "current_fmt": "0.341",
+        "scale": 1.0
+      },
+      {
+        "label": "Valid DSL",
+        "baseline": 0.61,
+        "current": 0.99,
+        "baseline_fmt": "61%",
+        "current_fmt": "99%",
+        "scale": 1.0
+      },
+      {
+        "label": "Compositional",
+        "baseline": 0.046,
+        "current": 0.412,
+        "baseline_fmt": "0.046",
+        "current_fmt": "0.412",
+        "scale": 1.0
+      },
+      {
+        "label": "Negation",
+        "baseline": 0.23,
+        "current": 0.475,
+        "baseline_fmt": "0.230",
+        "current_fmt": "0.475",
+        "scale": 1.0
+      }
+    ]
+  }
+}
