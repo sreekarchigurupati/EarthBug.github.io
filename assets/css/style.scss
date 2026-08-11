@@ -1295,3 +1295,55 @@ body { counter-reset: about-sec; }
   #nav-trigger:checked ~ label[for="nav-trigger"] .menu-icon::before { top: 0; transform: rotate(45deg); }
   #nav-trigger:checked ~ label[for="nav-trigger"] .menu-icon::after  { top: 0; transform: rotate(-45deg); }
 }
+
+/* ---------- CONTACT PAGE ---------- */
+.ct-hero { padding-bottom: 18px; }
+.ct-section { padding-top: 28px; padding-bottom: 48px; }
+
+.ct-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (max-width: 900px) { .ct-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .ct-grid { grid-template-columns: 1fr; } }
+.ct-card {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  gap: 2px 14px;
+  align-items: center;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--fg);
+  transition: border-color 0.25s, color 0.25s, transform 0.3s var(--ease-out);
+}
+.ct-card:hover {
+  border-color: var(--accent); color: var(--accent);
+  transform: translateY(-2px);
+}
+.ct-icon {
+  grid-row: 1 / span 2; width: 22px; height: 22px;
+  color: var(--fg-mute); transition: color 0.25s;
+}
+.ct-card:hover .ct-icon { color: var(--accent); }
+.ct-k {
+  font-family: var(--mono); font-size: 10.5px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--fg-mute); transition: color 0.25s;
+}
+.ct-card:hover .ct-k { color: var(--accent); }
+.ct-v {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(16px, 1.5vw, 19px); line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.ct-ext { font-family: var(--mono); font-style: normal; font-size: 11px; margin-left: 6px; color: var(--fg-mute); }
+.ct-card:hover .ct-ext { color: var(--accent); }
+
+.ct-foot { margin-top: 30px; }
+
+@media (max-width: 520px) {
+  .ct-card { padding: 15px 16px; }
+}

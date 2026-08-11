@@ -20,6 +20,7 @@ nav_pages:
   - blog: "archive"
   - talks: "talks"
   - gallery: "gallery"
+  - contact: "contact"
 
 # Social / SEO (read by jekyll-seo-tag)
 image: /assets/cover.jpg

@@ -178,6 +178,7 @@
       { label: 'Archive',              url: '/archive/',      kind: 'Navigate' },
       { label: 'Talks',                url: '/talks/',        kind: 'Navigate' },
       { label: 'Gallery',              url: '/gallery/',      kind: 'Navigate' },
+      { label: 'Contact',              url: '/contact/',      kind: 'Navigate' },
       { label: 'Search posts',         url: '/search/',       kind: 'Action'   },
       { label: 'Download CV (PDF)',    url: '/assets/cv.pdf', kind: 'Action'   },
       { label: 'GitHub',               url: 'https://github.com/sreekarchigurupati', kind: 'External' },
