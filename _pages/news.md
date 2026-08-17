@@ -16,6 +16,16 @@ hide_title: true
 
   <article class="timeline-item reveal">
     <span class="timeline-dot"></span>
+    <div class="timeline-date">Aug 2026</div>
+    <div class="timeline-body">
+      <span class="timeline-tag tag-conference">Conference</span>
+      <h3>Presented two posters at the NIH BRAIN Initiative Conference 2026</h3>
+      <p>Two posters at the annual BRAIN Initiative meeting: <em>SuCor</em>, parameter-free optimal-transport distortion correction for diffusion MRI, and <em>BundleMind</em>, an on-device LLM interface that turns a plain-language request for a pathway into rendered streamlines.</p>
+    </div>
+  </article>
+
+  <article class="timeline-item reveal">
+    <span class="timeline-dot"></span>
     <div class="timeline-date">Apr 2026</div>
     <div class="timeline-body">
       <span class="timeline-tag tag-conference">Symposium</span>
