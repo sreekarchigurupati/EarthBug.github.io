@@ -5,3 +5,6 @@
 .DS_Store
 docs/
 
+
+# Hardcover API token, used only by script/fetch-reading
+.hardcover-token

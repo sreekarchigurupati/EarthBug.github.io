@@ -1,0 +1,130 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Fetches the reading shelves from Hardcover and writes _data/reading.json.
+#
+#   script/fetch-reading             # write _data/reading.json
+#   script/fetch-reading --dry-run   # print the JSON, write nothing
+#   script/fetch-reading --introspect [Type]  # dump available API fields
+#
+# The token is read from $HARDCOVER_TOKEN, or from a .hardcover-token file in
+# the repo root (git-ignored). It is never written into the generated data.
+
+require 'json'
+require 'net/http'
+require 'uri'
+require 'time'
+
+require_relative '../lib/reading'
+
+ENDPOINT = URI('https://api.hardcover.app/v1/graphql')
+USER_AGENT = 'sreekar.ch reading-shelf (https://github.com/sreekarchigurupati/EarthBug.github.io)'
+
+def token
+  from_env = ENV['HARDCOVER_TOKEN'].to_s.strip
+  return from_env unless from_env.empty?
+
+  file = File.expand_path('../.hardcover-token', __dir__)
+  return File.read(file).strip if File.exist?(file)
+
+  abort "No Hardcover token. Set HARDCOVER_TOKEN, or put the token in .hardcover-token"
+end
+
+def query(graphql, variables = {})
+  auth = token
+  auth = "Bearer #{auth}" unless auth.start_with?('Bearer ')
+
+  request = Net::HTTP::Post.new(ENDPOINT)
+  request['Content-Type'] = 'application/json'
+  request['Authorization'] = auth
+  request['User-Agent'] = USER_AGENT
+  request.body = JSON.dump(query: graphql, variables: variables)
+
+  response = Net::HTTP.start(ENDPOINT.host, ENDPOINT.port, use_ssl: true, read_timeout: 45) do |http|
+    http.request(request)
+  end
+
+  abort "Hardcover returned HTTP #{response.code}: #{response.body}" unless response.code == '200'
+
+  body = JSON.parse(response.body)
+  if body['errors']
+    messages = body['errors'].map { |e| e['message'] }.join("\n  ")
+    abort "Hardcover GraphQL errors:\n  #{messages}"
+  end
+  body.fetch('data')
+end
+
+# --- introspection -----------------------------------------------------------
+
+def introspect(type_name)
+  data = query(<<~GRAPHQL, { name: type_name })
+    query Fields($name: String!) {
+      __type(name: $name) {
+        name
+        fields {
+          name
+          type { name kind ofType { name kind ofType { name kind } } }
+        }
+      }
+    }
+  GRAPHQL
+
+  type = data['__type']
+  abort "No such type: #{type_name}" if type.nil?
+
+  puts "== #{type['name']}"
+  type['fields'].sort_by { |f| f['name'] }.each do |field|
+    puts format('  %-32s %s', field['name'], Reading.type_label(field['type']))
+  end
+end
+
+# --- main --------------------------------------------------------------------
+
+if ARGV.include?('--introspect')
+  names = ARGV.reject { |a| a.start_with?('--') }
+  names = %w[users user_books books] if names.empty?
+  names.each { |n| introspect(n); puts }
+  exit 0
+end
+
+me = query('query Me { me { id username } }')
+user = Array(me['me']).first || me['me']
+user_id = user && user['id']
+abort 'Could not determine the Hardcover user id from the token.' if user_id.nil?
+warn "Hardcover user: #{user['username']} (#{user_id})"
+
+rows = query(<<~GRAPHQL, { userId: user_id })['user_books']
+  query Shelves($userId: Int!) {
+    user_books(
+      where: { user_id: { _eq: $userId }, status_id: { _in: [2, 3] } }
+      order_by: { updated_at: desc }
+      limit: 500
+    ) {
+      status_id
+      owned
+      last_read_date
+      book {
+        title
+        slug
+        image { url }
+        contributions { author { name } }
+      }
+    }
+  }
+GRAPHQL
+
+payload = Reading.build(rows, updated: Time.now.utc.strftime('%Y-%m-%d'))
+
+total = payload['current'].length + payload['read'].length
+abort 'Refusing to write: Hardcover returned no books.' if total.zero?
+
+json = JSON.pretty_generate(payload) + "\n"
+
+if ARGV.include?('--dry-run')
+  puts json
+else
+  path = File.expand_path('../_data/reading.json', __dir__)
+  File.write(path, json)
+  warn "Wrote #{path} (#{payload['current'].length} current, " \
+       "#{payload['read'].length} read, #{payload['owned'].length} owned)"
+end

@@ -1,0 +1,44 @@
+name: Sync reading shelf
+
+on:
+  schedule:
+    # Daily at 07:15 UTC
+    - cron: '15 7 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "reading-sync"
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.0'
+          bundler-cache: false
+
+      - name: Fetch reading shelf from Hardcover
+        env:
+          HARDCOVER_TOKEN: ${{ secrets.HARDCOVER_TOKEN }}
+        run: script/fetch-reading
+
+      - name: Commit if the shelf changed
+        run: |
+          if git diff --quiet -- _data/reading.json; then
+            echo "No change to the reading shelf."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/reading.json
+          git commit -m "Reading shelf synced from Hardcover"
+          git push

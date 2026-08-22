@@ -1,0 +1,30 @@
+{%- comment -%}
+  Renders one shelf of books from _data/reading.json.
+    include.books  — array of book entries
+    include.empty  — text shown when the shelf is empty
+{%- endcomment -%}
+{%- assign books = include.books -%}
+{%- if books and books.size > 0 -%}
+<ul class="book-shelf">
+  {%- for book in books -%}
+  <li class="book">
+    {%- if book.url -%}<a href="{{ book.url }}" target="_blank" rel="noopener">{%- endif -%}
+      <div class="book-cover">
+        {%- if book.cover -%}
+        <img src="{{ book.cover }}" alt="Cover of {{ book.title | escape }}" loading="lazy" decoding="async">
+        {%- else -%}
+        <div class="book-cover--blank"><span>{{ book.title | escape }}</span></div>
+        {%- endif -%}
+      </div>
+      <div class="book-meta">
+        <span class="book-title">{{ book.title | escape }}</span>
+        {%- if book.authors %}<span class="book-author">{{ book.authors | escape }}</span>{% endif -%}
+        {%- if book.finished %}<span class="book-date">{{ book.finished | date: "%b %Y" }}</span>{% endif -%}
+      </div>
+    {%- if book.url -%}</a>{%- endif -%}
+  </li>
+  {%- endfor -%}
+</ul>
+{%- else -%}
+<p class="book-empty">{{ include.empty }}</p>
+{%- endif -%}
