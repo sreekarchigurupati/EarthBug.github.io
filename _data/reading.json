@@ -1,17 +1,23 @@
 {
-  "updated": "2026-08-28",
+  "updated": "2026-08-29",
   "current": [
     {
-      "title": "The Hindus: An Alternative History",
-      "authors": "Wendy Doniger",
-      "cover": "https://assets.hardcover.app/edition/30427349/43b775e0198a19c4055017d4ead9c8d1dd8c875c.jpeg",
-      "url": "https://hardcover.app/books/the-hindus"
+      "title": "On the Shortness of Life",
+      "authors": "Seneca, A. Stewart",
+      "cover": "https://assets.hardcover.app/edition/12626703/66f118311ff1843c4f0e2748debe5b03145f6b5e.jpeg",
+      "url": "https://hardcover.app/books/on-the-shortness-of-life"
     },
     {
       "title": "Everything Is Tuberculosis: The History and Persistence of Our Deadliest Infection",
       "authors": "John Green",
       "cover": "https://assets.hardcover.app/edition/31748796/50f2fc089955988330e90da7b6255e1ff252e786.jpeg",
       "url": "https://hardcover.app/books/everything-is-tuberculosis"
+    },
+    {
+      "title": "The Hindus: An Alternative History",
+      "authors": "Wendy Doniger",
+      "cover": "https://assets.hardcover.app/edition/30427349/43b775e0198a19c4055017d4ead9c8d1dd8c875c.jpeg",
+      "url": "https://hardcover.app/books/the-hindus"
     }
   ],
   "read": [
