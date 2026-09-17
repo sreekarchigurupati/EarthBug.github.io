@@ -1,12 +1,6 @@
 {
-  "updated": "2026-09-16",
+  "updated": "2026-09-17",
   "current": [
-    {
-      "title": "On the Shortness of Life",
-      "authors": "Seneca, A. Stewart",
-      "cover": "https://assets.hardcover.app/edition/12626703/66f118311ff1843c4f0e2748debe5b03145f6b5e.jpeg",
-      "url": "https://hardcover.app/books/on-the-shortness-of-life"
-    },
     {
       "title": "Everything Is Tuberculosis: The History and Persistence of Our Deadliest Infection",
       "authors": "John Green",
@@ -21,7 +15,13 @@
     }
   ],
   "read": [
-
+    {
+      "title": "On the Shortness of Life",
+      "authors": "Seneca, A. Stewart",
+      "cover": "https://assets.hardcover.app/edition/12626703/66f118311ff1843c4f0e2748debe5b03145f6b5e.jpeg",
+      "url": "https://hardcover.app/books/on-the-shortness-of-life",
+      "finished": "2026-09-16"
+    }
   ],
   "owned": [
 
