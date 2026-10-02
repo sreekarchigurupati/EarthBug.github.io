@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-01",
+  "updated": "2026-10-02",
   "current": [
     {
       "title": "Everything Is Tuberculosis: The History and Persistence of Our Deadliest Infection",
@@ -15,6 +15,13 @@
     }
   ],
   "read": [
+    {
+      "title": "There Is No Antimemetics Division",
+      "authors": "qntm",
+      "cover": "https://assets.hardcover.app/external_data/193765/b3af02e08dc537afe1627e9cc6a20131874e056d.jpeg",
+      "url": "https://hardcover.app/books/there-is-no-antimemetics-division",
+      "finished": "2026-10-01"
+    },
     {
       "title": "On the Shortness of Life",
       "authors": "Seneca, A. Stewart",
